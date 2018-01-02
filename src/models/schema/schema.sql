@@ -5,6 +5,7 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
+  current_city VARCHAR(255) NOT NULL,
   date_joined DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
@@ -31,5 +32,5 @@ DROP TABLE IF EXISTS cities;
 CREATE TABLE cities (
   city_id SERIAL PRIMARY KEY,
   city_name VARCHAR(255) UNIQUE NOT NULL,
-  user_id REFERENCES users
+  
 );
