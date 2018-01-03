@@ -10,3 +10,8 @@ const addUser = (name, email, password, current_city) => db.one(
 const getUser = (email, password) => db.one(
   `SELECT * FROM users WHERE email=$1;`, [email]
 );
+
+module.exports = {
+  addUser,
+  getUser,
+}

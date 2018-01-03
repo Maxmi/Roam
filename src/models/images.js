@@ -13,3 +13,8 @@ const getUserImg = user_id => db.one(
     WHERE user_id = $1`,
   [user_id],
 );
+
+module.exports = {
+  saveUserImg,
+  getUserImg,
+}

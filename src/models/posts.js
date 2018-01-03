@@ -7,12 +7,12 @@ const savePost = user_id => db.one(
   [content, user_id, city_id],
 );
 
-const getPostsForCity = city_id => db.one(
-  `SELECT *
-    FROM posts
-    WHERE city_id = $1`,
-  [city_id],
-);
+// const getPostsForCity = city_id => db.one(
+//   `SELECT *
+//     FROM posts
+//     WHERE city_id = $1`,
+//   [city_id],
+// );
 
 const editPost = (post_id, content) => db.one(
   `UPDATE posts
@@ -21,3 +21,17 @@ const editPost = (post_id, content) => db.one(
     RETURNING *`,
     [post_id, content]
 );
+
+const deletePost = post_id => db.one (
+  `DELETTE FROM posts
+  WHERE id = $1`,
+  [post_id],
+);
+
+
+module.exports = {
+  savePost,
+  // getPostsForCity,
+  editPost,
+  deletePost,
+}

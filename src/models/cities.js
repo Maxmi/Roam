@@ -15,3 +15,8 @@ const getPostsForCity = city_id => db.one(
     WHERE city_id = $1`,
   [city_id],
 );
+
+module.exports = {
+  addCity,
+  getPostsForCity,
+};

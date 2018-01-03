@@ -1,0 +1,12 @@
+extends layout
+block content
+  h1 #{title} 
+    if name
+      h2 Welcome back #{name}
+      
+        
+    else 
+      h2 Hello Roamer! Please signup or login to view your profile
+      a#signupLink(href='signup') Sign Up    
+      a#loginlink(href='login') Log In
+    
