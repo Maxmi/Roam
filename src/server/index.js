@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const index = express.Router();
 const userQueries = require('../models/users');
 const postQueries = require('../models/posts');
 
@@ -9,15 +9,13 @@ const postRoutes = require('./posts');
 
 
 //route to homepage
-router.get('/', (req, res) => {
-  res.render('index', {
-    email: req.session.userID,
-  });
+index.get('/', (req, res) => {
+  res.render('index');
 });
 
 
 // route to logout
-router.get('/logout', (req, res, next) => {
+index.get('/logout', (req, res, next) => {
   // if this is authenticated user - delete cookies
   if (req.session) {
     req.session = null;
@@ -28,7 +26,7 @@ router.get('/logout', (req, res, next) => {
 });
 
 
-router.use('/userRoutes', userRoutes);
-router.use('/postRoutes', postRoutes);
+index.use('/users', userRoutes);
+index.use('/posts', postRoutes);
 
-module.exports = router;
+module.exports = index;

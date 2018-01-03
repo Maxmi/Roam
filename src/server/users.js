@@ -1,12 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const users = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const userQueries = require('../models/users');
 
 // route to signup page - GET
-router.get('/signup', (req, res) => {
+users.get('/signup', (req, res) => {
   res.render('signup', {
     title: 'Sign Up',
     error: '',
@@ -16,7 +16,7 @@ router.get('/signup', (req, res) => {
 
 
 // route to signup page - POST
-router.post('/signup', (req, res) => {
+users.post('/signup', (req, res) => {
   const { name, email, password, current_city } = req.body;
 
   // confirm that user filled all inputs
@@ -45,7 +45,7 @@ router.post('/signup', (req, res) => {
 
 
 // route to login page - GET
-router.get('/login', (req, res) => {
+users.get('/login', (req, res) => {
   res.render('login', {
     title: 'Log In',
     error: '',
@@ -55,7 +55,7 @@ router.get('/login', (req, res) => {
 
 
 // route to login page - POST
-router.post('/login', (req, res) => {
+users.post('/login', (req, res) => {
   const { email, password } = req.body;
   // check if user filled both inputs
   if (!email || !password) {
@@ -89,4 +89,4 @@ router.post('/login', (req, res) => {
 
 
 
-module.exports = router;
+module.exports = users;
