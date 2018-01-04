@@ -21,7 +21,7 @@ app.use(session({
 }));
 
 // serve static files from /public
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static('public'));
 
 // setup views
 app.set('view engine', 'pug');

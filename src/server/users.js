@@ -4,6 +4,23 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const userQueries = require('../models/users');
+const mid = require('./middleware');
+
+// route to profile page - GET
+users.get('/profile', mid.requiresLogin, (req, res) => {
+  const userID = parseInt(req.params.userID);
+
+  return userQueries.getUserByID(userID)
+    .then(user => {
+      res.render('profile', {
+        title: 'Profile Page',
+        name: user.name,
+        city: user.current_city,
+        joined: user.date_joined
+      });
+    })
+    .catch(console.error);
+})
 
 // route to signup page - GET
 users.get('/signup', (req, res) => {
@@ -17,10 +34,12 @@ users.get('/signup', (req, res) => {
 
 // route to signup page - POST
 users.post('/signup', (req, res) => {
-  const { name, email, password, current_city } = req.body;
+  const {
+    name, email, password, city,
+  } = req.body;
 
   // confirm that user filled all inputs
-  if (!(name || email || password || current_city)) {
+  if (!(name || email || password || city)) {
     res.render('signup', {
       title: 'Sign Up',
       error: 'All fields are required to sign up',
@@ -70,7 +89,7 @@ users.post('/login', (req, res) => {
           .then((result) => {
             if (result) {
               req.session.userID = user.email,
-              res.redirect('/');
+              res.redirect('/users/:userID');
             } else {
               res.render('login', {
                 title: 'Log In',

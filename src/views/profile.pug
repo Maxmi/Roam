@@ -1,0 +1,21 @@
+extends layout
+block content
+  div#userInfo
+    form
+      img(src='')
+      span#name(contenteditable='true') #{name}
+      br
+      span#city(contenteditable='true') #{city}
+      br
+      span#joined(contenteditable='true') #{joined}
+      br
+      button#edit(type='submit') Edit Profile
+    
+  div#userPosts
+    table 
+      each post in data 
+        tr
+          td= post.id
+          td= post.content
+          td= post.date_added
+  

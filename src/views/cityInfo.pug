@@ -1,0 +1,13 @@
+extends layout
+block content
+  div.banner
+    img
+  div.about
+    h3 #{name}
+    h4 #{about}
+    a#linkToAddNewPost(href='/cities/:cityID') Add New Review 
+    //should redirect to another page for wriring a post 
+  div.posts 
+    ul
+      each post in data 
+        li= post.content  

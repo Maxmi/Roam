@@ -1,0 +1,14 @@
+extends layout
+block content
+  h2 Share your experience
+  h3 Write a review for #{city}
+  
+  form#newPost
+    label(for='title') Title:
+    input#title.form-control(type='text' name='title')
+    br
+    
+    textarea#postBody(name='postBody' rows='20' cols='50')
+    
+    button#addPost(type='submit') Submit your review!
+    

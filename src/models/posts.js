@@ -1,37 +1,48 @@
 const db = require('./db');
 
-const savePost = user_id => db.one(
+const savePost = (content, userID, cityID) => db.one(
   `INSERT INTO posts (content, user_id, city_id)
     VALUES ($1, $2, $3)
     RETURNING *`,
-  [content, user_id, city_id],
+  [content, userID, cityID]
 );
 
-// const getPostsForCity = city_id => db.one(
-//   `SELECT *
-//     FROM posts
-//     WHERE city_id = $1`,
-//   [city_id],
-// );
+const getPostsForCity = cityID => db.one(
+  `SELECT *
+    FROM posts
+    WHERE city_id = $1`,
+  [cityID]
+);
 
-const editPost = (post_id, content) => db.one(
+
+const getPostsByUser = userID => db.one(
+  `SELECT post_id, content, date_added
+    FROM posts
+    JOIN users
+    ON posts.user_id = users.id
+    WHERE user_id = $1`,
+  [userID]
+);
+
+const editPost = (postID, content) => db.one(
   `UPDATE posts
     SET content = $2
     WHERE post_id = $1
     RETURNING *`,
-    [post_id, content]
+  [postID, content]
 );
 
-const deletePost = post_id => db.one (
+const deletePost = postID => db.one (
   `DELETTE FROM posts
   WHERE id = $1`,
-  [post_id],
+  [postID]
 );
 
 
 module.exports = {
   savePost,
-  // getPostsForCity,
+  getPostsForCity,
+  getPostsByUser,
   editPost,
   deletePost,
-}
+};

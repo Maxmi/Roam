@@ -7,15 +7,16 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   current_city VARCHAR(255) NOT NULL,
   date_joined DATE NOT NULL DEFAULT CURRENT_DATE
+  image VARCHAR(255) DEFAULT '<img src="http://lorempixel.com/150/150" />'
 );
 
-DROP TABLE IF EXISTS user_images;
-
-CREATE TABLE user_images (
-  img_id SERIAL PRIMARY KEY,
-  image BYTEA,
-  user_id REFERENCES users
-);
+-- DROP TABLE IF EXISTS user_images;
+--
+-- CREATE TABLE user_images (
+--   img_id SERIAL PRIMARY KEY,
+--   image BYTEA,
+--   user_id REFERENCES users
+-- );
 
 DROP TABLE IF EXISTS posts;
 
@@ -31,6 +32,6 @@ DROP TABLE IF EXISTS cities;
 
 CREATE TABLE cities (
   city_id SERIAL PRIMARY KEY,
+  country VARCHAR(255) NOT NULL,
   city_name VARCHAR(255) UNIQUE NOT NULL,
-  
 );
