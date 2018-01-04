@@ -1,4 +1,43 @@
+html, body {
+  height: 100%;
+}
+
 body {
   width: 90%;
   margin: 0 auto;
+  background-image: url('../images/opt-deanna-ritchie.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+}
+
+div.main h1 {
+  font-family: 'Courgette', cursive;
+  padding-left: 20px;
+}
+
+div.poem {
+  padding: 20px;
+  font-family: sans-serif;
+  width: 40%;
+}
+
+p.cite {
+  padding-right: 100px;
+}
+cite {
+  float: right;
+  font-size: 10px;
+}
+
+a.link {
+    display: inline-block;
+    margin: 5px 15px;
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: white;
+}
+
+div.footer {
+  height: 100px;
 }

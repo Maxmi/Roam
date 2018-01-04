@@ -1,22 +1,23 @@
 extends layout
 block content
-  h1 #{title} 
-    //- if name
-    //-   h2 Welcome back #{name}
-    //- else 
-  pre
-    span To move, to breathe, to fly, to float, 
-    br
-    span To gain all while you give,
-    br
-    span To roam the roads of lands remote,
-    br
-    span To travel is to live.
+  div.main
+    h1.title Roam
     
-  p
-    cite Hans Christian Andersen 
-          
-  a#signupLink(href='users/signup') Sign Up
-  br
-  a#loginlink(href='users/login') Log In
+    div.poem
+      pre
+        span To move, to breathe, to fly, to float, 
+        br
+        span To gain all while you give,
+        br
+        span To roam the roads of lands remote,
+        br
+        span To travel is to live.
+        
+        p.cite
+          cite Hans Christian Andersen 
     
+  div.links
+    a.link(href='users/signup') Sign Up
+    a.link(href='users/login') Log In
+  
+  div.footer  
