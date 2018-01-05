@@ -4,25 +4,25 @@ block content
     h2 Welcome back #{name}
     a#logoutlink(href='logout') Log Out
   else 
-    //- h1 #{title} 
+    h1 #{title} 
     div#form
-      form(method='POST' action='/signup')
+      form(method='POST' action='/users/signup')
         label(for='name') Name:
-        input#name.form-control(type='text' name='name' placeholder='your name')
+        input#name.form-control-sm(type='text' name='name' placeholder='your name')
         br
           
         label(for='email') Email:
-        input#email.form-control(type='email' name='email' placeholder='email')
+        input#email.form-control-sm(type='email' name='email' placeholder='email')
         br
         
         label(for='password') Password:
-        input#password.form-control(type='password' name='password' placeholder='password')
+        input#password.form-control-sm(type='password' name='password' placeholder='password')
         br
           
         label(for='name') City:
-        input#city.form-control(type='text' name='city' placeholder='your current city')
+        input#city.form-control-sm(type='text' name='city' placeholder='your current city')
         br
         
-        p #{error}
+        p.error #{error}
       
         button#signupBtn(type='submit') Sign Up

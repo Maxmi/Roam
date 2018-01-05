@@ -4,17 +4,17 @@ block content
     h2 Welcome back #{email}
     a#logoutlink(href='logout') Log Out
   else 
-    //- h1 #{title} 
+    h1 #{title} 
     div#form
-      form(method='POST' action='/login')
+      form(method='POST' action='/users/login')
         label(for='email') Email:
-        input#email.form-control(type='email' name='email' placeholder='email')
+        input#email.form-control-sm(type='email' name='email' placeholder='email')
         br
         
         label(for='password') Password:
-        input#password.form-control(type='password' name='password' placeholder='password')
+        input#password.form-control-sm(type='password' name='password' placeholder='password')
         br
         
-        p #{error}
+        p.error #{error}
         
         button#loginBtn(type='submit') Log In

@@ -11,23 +11,39 @@ body {
 
 }
 
-div.main h1 {
-  font-family: 'Courgette', cursive;
-  padding-left: 20px;
+div.index {
+  /*background-image: url('../images/opt-deanna-ritchie.jpg');*/
 }
 
 div.poem {
+  float: left;
   padding: 20px;
   font-family: sans-serif;
   width: 40%;
 }
 
+pre {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+}
+
 p.cite {
   padding-right: 100px;
 }
+
+p.error {
+  color: red;
+  background-color: white;
+}
+
 cite {
   float: right;
   font-size: 10px;
+}
+
+div.links {
+  padding-top: 20px;
+  float: right;
 }
 
 a.link {
@@ -35,7 +51,10 @@ a.link {
     margin: 5px 15px;
     padding: 10px 15px;
     text-decoration: none;
-    background-color: white;
+    background-color: tomato;
+    border-radius: 40%;
+    font-family: 'Courgette', cursive;
+    color: black;
 }
 
 div.footer {

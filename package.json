@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node src/app.js",
     "db:create": "createdb roam",
-    "db:schema": "psql roam < src/models/schema.sql",
-    "db:drop": "dbdrop roam",
+    "db:schema": "psql roam < src/models/schema/schema.sql",
+    "db:drop": "dropdb roam",
     "db:reset": "npm run db:drop && npm run db:create && npm run db:schema",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,8 +1,13 @@
 extends layout
 block content
-  div.main
-    h1.title Roam
-    
+  
+  div.index
+
+    div.links
+      //- h1.title Roam
+      a.link(href='users/signup') Sign Up
+      a.link(href='users/login') Log In
+          
     div.poem
       pre
         span To move, to breathe, to fly, to float, 
@@ -16,8 +21,5 @@ block content
         p.cite
           cite Hans Christian Andersen 
     
-  div.links
-    a.link(href='users/signup') Sign Up
-    a.link(href='users/login') Log In
   
   div.footer  

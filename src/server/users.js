@@ -38,8 +38,10 @@ users.post('/signup', (req, res) => {
     name, email, password, city,
   } = req.body;
 
+  console.log(name);
+
   // confirm that user filled all inputs
-  if (!(name || email || password || city)) {
+  if (!name || !email || !password || !city) {
     res.render('signup', {
       title: 'Sign Up',
       error: 'All fields are required to sign up',
