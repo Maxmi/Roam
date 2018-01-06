@@ -3,16 +3,19 @@ html, body {
 }
 
 body {
-  width: 90%;
-  margin: 0 auto;
-  background-image: url('../images/opt-deanna-ritchie.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+  /*width: 100%;*/
+  /*margin: 0 auto;*/
+  /*background-image: url('../images/opt-deanna-ritchie.jpg');*/
 
 }
 
-div.index {
-  /*background-image: url('../images/opt-deanna-ritchie.jpg');*/
+div.indexwrapper {
+  background-image: url('../images/opt-deanna-ritchie.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
 
 div.poem {

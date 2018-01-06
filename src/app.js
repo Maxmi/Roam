@@ -40,13 +40,14 @@ app.use((req, res, next) => {
 });
 
 // error handler
-// app.use((err, req, res) => {
-//   // res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: err,
-//   });
-// });
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: err,
+  });
+  next();
+});
 
 // listen
 app.listen(port, () => {

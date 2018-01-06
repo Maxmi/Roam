@@ -1,10 +1,10 @@
 const db = require('./db');
 
-const addUser = (name, email, password, city) => db.one(
-  ` INSERT INTO users (name, email, password, current_city)
-    VALUES ($1, $2, $3, $4)
+const addUser = (name, email, password, city, img_num) => db.one(
+  ` INSERT INTO users (name, email, password, current_city, img_num)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *;`,
-  [name, email, password, city]
+  [name, email, password, city, img_num]
 );
 
 const getUser = (email, password) => db.one(
@@ -13,7 +13,15 @@ const getUser = (email, password) => db.one(
 
 
 const getUserByID = userID => db.one(
-  `SELECT * FROM users WHERE id=$1;`, [userID]
+  `SELECT * FROM users WHERE user_id=$1;`, [userID]
+);
+
+
+const updateUser = (id, name, email) => db.one(
+  `UPDATE users
+  SET name = $1, email = $2
+  WHERE id = $3
+  RETURNING *`
 );
 
 
@@ -21,5 +29,6 @@ const getUserByID = userID => db.one(
 module.exports = {
   addUser,
   getUser,
-  getUserByID
+  getUserByID,
+  updateUser
 };
