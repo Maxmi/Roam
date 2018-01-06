@@ -9,7 +9,7 @@ const {getRandomInt} = require('../helpers');
 
 
 // route to signup page - GET
-users.get('/signup', (req, res) => {
+users.get('/signup', mid.loggedOut, (req, res) => {
   //if user not authenticated - show signup page
   if(!req.session.userName) {
     res.render('signup', {
@@ -59,7 +59,7 @@ users.post('/signup', (req, res) => {
 
 
 // route to login page - GET
-users.get('/login', (req, res) => {
+users.get('/login', mid.loggedOut, (req, res) => {
   if(!req.session.userName) {
     res.render('login', {
       title: 'Log In',

@@ -3,6 +3,8 @@ block content
   if name 
     h2 Hi #{name}
     a#logoutlink(href='logout') Log Out
+    br
+    a#homelink(href='/') Home Page
     
     div#userInfo
       form(action=`/users/${userID}` method='POST')

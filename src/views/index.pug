@@ -2,11 +2,12 @@ extends layout
 block content
   div.indexwrapper
     div.index
-      if currentUser  
+      if currentUser
         div.poem
           h2 Welcome to Roam, #{currentUserName}!
         div.links
           a.link(href='users/profile') View Profile  
+          a.link(href='users/logout') Log Out
       
       else 
 

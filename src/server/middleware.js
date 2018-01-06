@@ -10,7 +10,7 @@ const requiresLogin =  (req, res, next) => {
 
 const loggedOut = (req, res, next) => {
   if(req.session && req.session.userID) {
-    return res.redirect('/profile');
+    return res.redirect('/users/profile');
   }
   return next();
 };
