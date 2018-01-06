@@ -10,11 +10,17 @@ const {getRandomInt} = require('../helpers');
 
 // route to signup page - GET
 users.get('/signup', (req, res) => {
-  res.render('signup', {
-    title: 'Sign Up',
-    error: '',
-    // email: req.session.userID, // setting property email on req session obj
-  });
+  //if user not authenticated - show signup page
+  if(!req.session.userName) {
+    res.render('signup', {
+      title: 'Sign Up',
+      error: '',
+      name: req.session.userName, // setting property name on req session obj
+    });
+  } else {
+    res.redirect('/users/profile');
+  }
+
 });
 
 
@@ -38,9 +44,10 @@ users.post('/signup', (req, res) => {
         .then((user) => {
         // start tracking the user
           req.session.userID = user.user_id;
+          req.session.userName = user.name;
+
           res.redirect('/users/profile');
         }).catch((err) => {
-          // console.log(err);
           res.render('signup', {
             title: 'Sign Up',
             error: 'Could not add user to database',
@@ -53,11 +60,16 @@ users.post('/signup', (req, res) => {
 
 // route to login page - GET
 users.get('/login', (req, res) => {
-  res.render('login', {
-    title: 'Log In',
-    error: '',
-    // email: req.session.userID,
-  });
+  if(!req.session.userName) {
+    res.render('login', {
+      title: 'Log In',
+      error: '',
+      name: req.session.userName,
+    });
+  } else {
+    res.redirect('/users/profile');
+  }
+
 });
 
 
@@ -101,7 +113,6 @@ users.post('/login', (req, res) => {
 
 // route to profile page - GET
 users.get('/profile', mid.requiresLogin, (req, res) => {
-  // const {userID} = req.params;
 
   userQueries.getUserByID(req.session.userID)
     .then(user => {

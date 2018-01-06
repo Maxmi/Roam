@@ -13,7 +13,7 @@ block content
         br
         span#city(contenteditable='true') #{city}
         br
-        span#joined(contenteditable='true') #{joined}
+        span#joined(contenteditable='true') #{joined.toString().slice(0,15)}
         br
         button#edit(type='submit') Edit Profile
   else 

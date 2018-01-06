@@ -2,24 +2,27 @@ extends layout
 block content
   div.indexwrapper
     div.index
-
-      div.links
-        //- h1.title Roam
-        a.link(href='users/signup') Sign Up
-        a.link(href='users/login') Log In
-            
-      div.poem
-        pre
-          span To move, to breathe, to fly, to float, 
-          br
-          span To gain all while you give,
-          br
-          span To roam the roads of lands remote,
-          br
-          span To travel is to live.
-          
-          p.cite
-            cite Hans Christian Andersen 
+      if name  
+        h2 Welcome to Roam #{name}!
+        a.link(href='users/profile') View Profile  
       
-    
-    div.footer  
+      else 
+
+        div.links
+          a.link(href='users/signup') Sign Up
+          a.link(href='users/login') Log In
+              
+        div.poem
+          pre
+            span To move, to breathe, to fly, to float, 
+            br
+            span To gain all while you give,
+            br
+            span To roam the roads of lands remote,
+            br
+            span To travel is to live.
+            
+            p.cite
+              cite Hans Christian Andersen 
+              
+      div.footer  

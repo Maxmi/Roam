@@ -7,10 +7,12 @@ const userRoutes = require('./users');
 const postRoutes = require('./posts');
 
 
-
 //route to homepage
 index.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    userName: req.session.name,
+  });
+  console.log(userName);
 });
 
 
