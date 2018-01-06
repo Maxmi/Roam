@@ -3,9 +3,6 @@ html, body {
 }
 
 body {
-  /*width: 100%;*/
-  /*margin: 0 auto;*/
-  /*background-image: url('../images/opt-deanna-ritchie.jpg');*/
 
 }
 
@@ -21,7 +18,7 @@ div.indexwrapper {
 div.poem {
   float: left;
   padding: 20px;
-  font-family: sans-serif;
+  font-family: 'Courgette', cursive;
   width: 40%;
 }
 

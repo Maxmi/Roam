@@ -20,6 +20,13 @@ app.use(session({
   keys: ['supersecretkey'],
 }));
 
+//make userID and userName available in templates
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.userID;
+  res.locals.currentUserName = req.session.userName;
+  next();
+})
+
 // serve static files from /public
 app.use(express.static('public'));
 

@@ -9,10 +9,7 @@ const postRoutes = require('./posts');
 
 //route to homepage
 index.get('/', (req, res) => {
-  res.render('index', {
-    userName: req.session.name,
-  });
-  console.log(userName);
+  res.render('index');
 });
 
 
