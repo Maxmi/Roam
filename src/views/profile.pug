@@ -11,10 +11,13 @@ block content
         div
           img(src=`/images/userPics/img${imgNum}.jpeg`)
         br
+        span Name: 
         span#name(contenteditable='true') #{name}
         br
+        span City: 
         span#city(contenteditable='true') #{city}
         br
+        spane Date joined: 
         span#joined(contenteditable='true') #{joined.toString().slice(0,15)}
         br
         button#edit(type='submit') Edit Profile
@@ -22,10 +25,11 @@ block content
       h1 #{title}
       h2 You need to be logged in to view this page
 
-  //- div#userPosts
-  //-   ul  
-  //-     each post in posts 
-  //-       li= post.content  
-  //-       li= post.city_id
-  //-       li= post.date_added
-  //- 
+  div#userPosts
+    span Posts:
+      //- ul
+      //-   each post in posts
+      //-     li= post.content  
+      //-     li= post.date_added
+      //-     li= post.city_name
+  

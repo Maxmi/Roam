@@ -1,9 +1,16 @@
 extends layout
 block content
   h2 Share your experience
-  h3 Write a review for #{city}
+  h3 Write a review for 
+    select 
+      option(name='cityName' value='ny') New York
+      option(name='cityName' value='sf') San Francisco
+      option(name='cityName' value='vc') Vancouver
+      option(name='cityName' value='cn') Cancun
+      option(name='cityName' value='ln') London 
+      option(name='cityName' value='pr') Paris  
   
-  form#newPost
+  form#newPost(method='POST' action='/posts/newPost')
     label(for='title') Title:
     input#title.form-control(type='text' name='title')
     br

@@ -7,16 +7,10 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   current_city VARCHAR(255) NOT NULL,
   date_joined DATE NOT NULL DEFAULT CURRENT_DATE,
-  img_num INT 
+  img_num INT
 );
 
--- DROP TABLE IF EXISTS user_images;
---
--- CREATE TABLE user_images (
---   img_id SERIAL PRIMARY KEY,
---   image BYTEA,
---   user_id REFERENCES users
--- );
+
 DROP TABLE IF EXISTS cities;
 
 CREATE TABLE cities (

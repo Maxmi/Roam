@@ -1,25 +1,15 @@
 const express = require('express');
 const posts = express.Router();
-const postQueries = require('../models/users');
+const postQueries = require('../models/posts');
 
 
 //route to fetch posts by city
-posts.get('posts/:cityID', (req, res) => {
-  const cityID = parseInt(req.params.cityID);
-  return postQueries.getPostsForCity(cityID)
+posts.get('/posts/:cityID', (req, res) => {
+  const {cityID} = req.params;
+  console.log(cityID);
+  return postQueries.getPostsByCity(cityID)
     .then((posts) => {
-      res.status(200).json(posts);
-    })
-    .catch(console.error);
-});
-
-
-//route to fetch posts by user
-posts.get('posts/:userID', (req, res) => {
-  const userID = parseInt(req.params.userID);
-  return postQueries.getPostsByUser(userID)
-    .then((posts) => {
-      res.render('profile', {
+      res.render('cityInfo', {
         posts
       });
     })
@@ -27,11 +17,19 @@ posts.get('posts/:userID', (req, res) => {
 });
 
 
-//route to add a post
-posts.post('/posts/:userID', (req, res) => {
-  const userID = parseInt(req.params.userID);
+//route to get page for adding new post
+posts.get('/newPost', (req, res) => {
+  res.render('newPost', {
+    
+  })
+});
+
+
+//route to get page for adding new post
+posts.post('/newPost', (req, res) => {
+  // const userID =
   const { content } = req.body;
-  const { cityID } = parseInt(req.body);
+  // const { cityID } =
 
   return postQueries.savePost(content, userID, cityID)
     .then(post => {

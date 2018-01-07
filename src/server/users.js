@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const userQueries = require('../models/users');
+
 const mid = require('./middleware');
 const {getRandomInt} = require('../helpers');
 
@@ -124,9 +125,17 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
         city: user.current_city,
         joined: user.date_joined
       });
+    });
+
+  userQueries.getUserPosts(req.session.userID)
+    .then(posts => {
+      console.log(posts)
+      console.log(posts.length)
+      // res.render('profile', {
+      //   posts: posts
+      // })
     })
-    // .catch(console.error);
-})
+});
 
 
 // route to logout

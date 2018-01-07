@@ -8,7 +8,7 @@ const savePost = (content, userID, cityID) => db.one(
 );
 
 
-const getPostsByCity = cityID => db.one(
+const getPosts = cityID => db.one(
   `SELECT *
     FROM posts
     JOIN cities
@@ -18,15 +18,6 @@ const getPostsByCity = cityID => db.one(
 );
 
 
-const getPostsByUser = userID => db.one(
-  `SELECT post_id, content, date_added
-    FROM posts
-    JOIN users
-    ON posts.user_id = users.id
-    WHERE users.user_id = $1`,
-  [userID]
-);
-
 const editPost = (postID, content) => db.one(
   `UPDATE posts
     SET content = $2
@@ -34,6 +25,7 @@ const editPost = (postID, content) => db.one(
     RETURNING *`,
   [postID, content]
 );
+
 
 const deletePost = postID => db.one (
   `DELETTE FROM posts
@@ -44,8 +36,7 @@ const deletePost = postID => db.one (
 
 module.exports = {
   savePost,
-  getPostsByCity,
-  getPostsByUser,
+  getPosts,
   editPost,
   deletePost,
 };
