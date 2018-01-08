@@ -5,6 +5,7 @@ const index = express.Router();
 
 const userRoutes = require('./users');
 const postRoutes = require('./posts');
+const cityRoutes = require('./cities');
 
 
 //route to homepage
@@ -19,5 +20,6 @@ index.get('/', (req, res) => {
 
 index.use('/users', userRoutes);
 index.use('/posts', postRoutes);
+index.use('/cities', cityRoutes);
 
 module.exports = index;

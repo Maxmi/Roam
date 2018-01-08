@@ -4,8 +4,8 @@ const postQueries = require('../models/posts');
 
 
 //route to fetch posts by city
-posts.get('//:cityID', (req, res) => {
-  const {cityID} = req.params;
+posts.get('/cities/:city', (req, res) => {
+  const {city} = req.params;
   console.log(cityID);
   // return postQueries.getPostsByCity(cityID)
   //   .then((posts) => {

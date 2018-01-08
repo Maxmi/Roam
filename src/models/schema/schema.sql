@@ -16,7 +16,8 @@ DROP TABLE IF EXISTS cities;
 CREATE TABLE cities (
   city_id SERIAL PRIMARY KEY,
   country VARCHAR(255) NOT NULL,
-  city_name VARCHAR(255) UNIQUE NOT NULL
+  city_name VARCHAR(255) UNIQUE NOT NULL,
+  city_info TEXT 
 );
 
 DROP TABLE IF EXISTS posts;
