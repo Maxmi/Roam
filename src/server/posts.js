@@ -4,30 +4,30 @@ const postQueries = require('../models/posts');
 
 
 //route to fetch posts by city
-posts.get('/posts/:cityID', (req, res) => {
+posts.get('//:cityID', (req, res) => {
   const {cityID} = req.params;
   console.log(cityID);
-  return postQueries.getPostsByCity(cityID)
-    .then((posts) => {
-      res.render('cityInfo', {
-        posts
-      });
-    })
-    .catch(console.error);
+  // return postQueries.getPostsByCity(cityID)
+  //   .then((posts) => {
+  //     res.render('cityInfo', {
+  //       posts
+  //     });
+  //   })
+  //   .catch(console.error);
 });
 
 
 //route to get page for adding new post
 posts.get('/newPost', (req, res) => {
   res.render('newPost', {
-    
+
   })
 });
 
 
 //route to get page for adding new post
 posts.post('/newPost', (req, res) => {
-  // const userID =
+  // const userID = req.session.userID;
   const { content } = req.body;
   // const { cityID } =
 

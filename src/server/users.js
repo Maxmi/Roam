@@ -46,7 +46,6 @@ users.post('/signup', (req, res) => {
         // start tracking the user
           req.session.userID = user.user_id;
           req.session.userName = user.name;
-
           res.redirect('/users/profile');
         }).catch((err) => {
           res.render('signup', {
@@ -100,6 +99,7 @@ users.post('/login', (req, res) => {
                 });
               } else {
                 req.session.userID = user.user_id;
+                req.session.userName = user.name;
                 return res.redirect('/users/profile');
               }
             });
@@ -117,30 +117,27 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
 
   userQueries.getUserByID(req.session.userID)
     .then(user => {
-      res.render('profile', {
-        title: 'Profile Page',
-        id: user.user_id,
-        imgNum: user.img_num,
-        name: user.name,
-        city: user.current_city,
-        joined: user.date_joined
-      });
+      userQueries.getUserPosts(req.session.userID)
+        .then(posts => {
+          res.render('profile', {
+            posts,
+            title: 'Profile Page',
+            id: user.user_id,
+            imgNum: user.img_num,
+            name: user.name,
+            city: user.current_city,
+            joined: user.date_joined
+          });
+        })
+
     });
 
-  userQueries.getUserPosts(req.session.userID)
-    .then(posts => {
-      console.log(posts)
-      console.log(posts.length)
-      // res.render('profile', {
-      //   posts: posts
-      // })
-    })
+
 });
 
 
 // route to logout
 users.get('/logout', (req, res, next) => {
-  // if this is authenticated user - delete cookies
   if (req.session) {
     req.session = null;
     res.redirect('/');

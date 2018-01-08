@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS posts;
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   date_added DATE NOT NULL DEFAULT CURRENT_DATE,
   user_id INT REFERENCES users,

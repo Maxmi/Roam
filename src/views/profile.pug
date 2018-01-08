@@ -1,35 +1,42 @@
 extends layout
 block content
+  
   if name 
-    h2 Hi #{name}
-    a#logoutlink(href='logout') Log Out
-    br
-    a#homelink(href='/') Home Page
+    div.profileTop
+      //- h2.profileTitle Hi #{name}
+      a#logoutlink.link(href='logout') Log Out
+      a#homelink.link(href='/') Home Page
     
     div#userInfo
-      form(action=`/users/${userID}` method='POST')
-        div
-          img(src=`/images/userPics/img${imgNum}.jpeg`)
+      form#userInfo(action=`/users/${userID}` method='POST')
+        div.form-group
+          div(name='img').form-control
+            img(src=`/images/userPics/img${imgNum}.jpeg`)
+        div.form-group
+          label(for='name') Name: 
+          div(name='name').form-control
+            span#name(contenteditable='true') #{name}
+        div.form-group
+          label(for='city') City: 
+          div(name='city').form-control
+            span#city(contenteditable='true') #{city}
+        div.form-group
+          label(for='date') Date joined: 
+          div(name='date').form-control
+            span#joined(contenteditable='true') #{joined.toString().slice(0,15)}
         br
-        span Name: 
-        span#name(contenteditable='true') #{name}
-        br
-        span City: 
-        span#city(contenteditable='true') #{city}
-        br
-        spane Date joined: 
-        span#joined(contenteditable='true') #{joined.toString().slice(0,15)}
-        br
-        button#edit(type='submit') Edit Profile
+        button#edit.btn.btn-info(type='submit') Edit Profile
   else 
       h1 #{title}
       h2 You need to be logged in to view this page
 
   div#userPosts
     span Posts:
-      //- ul
-      //-   each post in posts
-      //-     li= post.content  
-      //-     li= post.date_added
-      //-     li= post.city_name
+      div
+        each post in posts
+          div.postCard
+            h3= post.city_name
+            p= post.title  
+            p= post.content  
+            p= post.date_added
   
