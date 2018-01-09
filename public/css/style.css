@@ -197,6 +197,7 @@ div.postData {
   text-align: right;
   font-style: italic;
 }
+
 span.date {
   font-size: 12px;
 }
@@ -207,4 +208,22 @@ p.title {
 
 p.content {
   /*font-style: italic;*/
+}
+
+/*******************************************
+              ADD NEW POST PAGE
+/*******************************************/
+div.container.newPost {
+  border: 1px solid #000;
+}
+
+div.newPostHeader {
+  text-align: center;
+  font-family: 'Courgette', cursive;
+}
+
+
+div.newPostForm {
+  text-align: center;
+  font-family: 'Courgette', cursive;
 }

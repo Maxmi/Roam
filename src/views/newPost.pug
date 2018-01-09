@@ -1,29 +1,22 @@
 extends layout
 block content
-  div.container
-    h2 Share your experience
+  div.container.newPost
+    div.newPostHeader
+      h2.newPostHeader Share your experience
     
-    
-    form#newPost(method='POST' action='/posts/newPost')
-      p Write a review for 
-        select#citiesList(name='cityID')
-          //get from db don't hardcode 
-          
-          //- option(name='cityName' value='4') Cancun
-          option(value='2') Dubai
-          //- option(name='cityName' value='5') London 
-          //- option(name='cityName' value='6') New York
-          //- option(name='cityName' value='7') Paris  
-          //- option(name='cityName' value='8') San Francisco
-          option(value='3') Sydney
-          option(value='1') Tokyo
-          //- option(name='cityName' value='9') Vancouver
-      div#newPost.form-group
-        label(for='title') Title:
-        input#title.form-control(type='text' name='title')
-        br
-    
-        textarea#postBody(name='content' rows='15' cols='50')
-    
-        button#addPost(type='submit') Submit your review!
+    div.newPostForm
+      form#newPost(method='POST' action='/posts/newPost')
+        div.dropdown 
+          p Write a review for 
+            select#citiesList(name='cityID')
+              each city in cities
+                option(value= city.city_id) #{city.city_name}
+            
+        div#newPost.form-group
+          input#title.form-control(type='text' name='title' placeholder='give a title to your review')
+          br
+      
+          textarea#postBody(name='content' rows='15' cols='50')
+          br
+          button#addPost.btn.btn-primary(type='submit') Submit!
     

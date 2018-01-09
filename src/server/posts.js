@@ -1,13 +1,18 @@
 const express = require('express');
 const posts = express.Router();
 const postQueries = require('../models/posts');
-
+const cityQueries = require('../models/cities');
 
 //route to get page for adding new post
 posts.get('/newPost', (req, res) => {
-  res.render('newPost', {
-    title: 'Add Review'
-  });
+  cityQueries.getCities()
+    .then(cities => {
+      // console.log(cities)
+      res.render('newPost', {
+        title: 'Add Review',
+        cities
+      });
+    });
 });
 
 
