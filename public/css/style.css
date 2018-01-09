@@ -117,3 +117,8 @@ div.profileTop {
   margin: 10px 5%;
   float: right;
 }
+
+div#newPost {
+  width: 50%;
+  margin: 0 auto;
+}

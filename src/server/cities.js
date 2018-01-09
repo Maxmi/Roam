@@ -4,19 +4,25 @@ const cityQueries = require('../models/cities');
 
 
 //route to get city info
+//need to change this route later - it should get cityInfo and cityPosts
+//and render them together
 cities.get('/:city', (req, res) => {
   const {city} = req.params;
-  // console.log(city)
-  // res.send(`hi from ${city}`);
   cityQueries.getCityInfo(city)
     .then(info => {
-      // console.log(info);
-      res.render('cityInfo', {
-        name: info.city_name,
-        info: info.city_info
-      })
-    })
+      cityQueries.getCityPosts(city)
+        .then(posts => {
+          console.log(posts)
+          res.render('cityInfo', {
+            posts,
+            name: info.city_name,
+            info: info.city_info
 
+          });
+        })
+
+
+    });
 });
 
 module.exports = cities;

@@ -1,21 +1,26 @@
 extends layout
 block content
-  h2 Share your experience
-  h3 Write a review for 
-    select 
-      option(name='cityName' value='ny') New York
-      option(name='cityName' value='sf') San Francisco
-      option(name='cityName' value='vc') Vancouver
-      option(name='cityName' value='cn') Cancun
-      option(name='cityName' value='ln') London 
-      option(name='cityName' value='pr') Paris  
-  
-  form#newPost(method='POST' action='/posts/newPost')
-    label(for='title') Title:
-    input#title.form-control(type='text' name='title')
-    br
+  div.container
+    h2 Share your experience
+    p Write a review for 
+      select#citiesList
+        //- option(name='cityName' value='4') Cancun
+        option(name='cityName' value='2') Dubai
+        //- option(name='cityName' value='5') London 
+        //- option(name='cityName' value='6') New York
+        //- option(name='cityName' value='7') Paris  
+        //- option(name='cityName' value='8') San Francisco
+        option(name='cityName' value='3') Sydney
+        option(name='cityName' value='1') Tokyo
+        //- option(name='cityName' value='9') Vancouver
     
-    textarea#postBody(name='postBody' rows='20' cols='50')
+    form#newPost(method='POST' action='/posts/newPost')
+      div#newPost.form-group
+        label(for='title') Title:
+        input#title.form-control(type='text' name='title')
+        br
     
-    button#addPost(type='submit') Submit your review!
+        textarea#postBody(name='content' rows='15' cols='50')
+    
+        button#addPost(type='submit') Submit your review!
     

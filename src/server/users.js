@@ -112,7 +112,7 @@ users.post('/login', (req, res) => {
 
 
 
-// route to profile page - GET
+// route to profile page - GET user info and user's posts
 users.get('/profile', mid.requiresLogin, (req, res) => {
 
   userQueries.getUserByID(req.session.userID)
@@ -128,11 +128,8 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
             city: user.current_city,
             joined: user.date_joined
           });
-        })
-
+        });
     });
-
-
 });
 
 

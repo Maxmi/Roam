@@ -1,5 +1,4 @@
 const requiresLogin =  (req, res, next) => {
-  // console.log('%%%%%%%',req.session && req.session.userID)
   if(req.session && req.session.userID) {
     return next();
   } else {

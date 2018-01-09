@@ -1,20 +1,10 @@
 const db = require('./db');
 
-const savePost = (content, userID, cityID) => db.one(
-  `INSERT INTO posts (content, user_id, city_id)
-    VALUES ($1, $2, $3)
+const savePost = (title, content, userID, cityID) => db.one(
+  `INSERT INTO posts (title, content, user_id, city_id)
+    VALUES ($1, $2, $3, $4)
     RETURNING *`,
-  [content, userID, cityID]
-);
-
-
-const getPosts = cityID => db.one(
-  `SELECT *
-    FROM posts
-    JOIN cities
-    ON posts.city_id = cities.city_id
-    WHERE cities.city_id = $1`,
-  [cityID]
+  [title, content, userID, cityID]
 );
 
 
@@ -36,7 +26,6 @@ const deletePost = postID => db.one (
 
 module.exports = {
   savePost,
-  getPosts,
   editPost,
   deletePost,
 };
