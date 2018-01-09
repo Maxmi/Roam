@@ -82,7 +82,7 @@ users.post('/login', (req, res) => {
       error: 'Provide both email and password.'
     });
   } else {
-    userQueries.getUser(email, password)
+    userQueries.getUser(email)
       .then(user => {
         if(!user) {
           res.render('login', {
@@ -114,7 +114,6 @@ users.post('/login', (req, res) => {
 users.get('/profile', mid.requiresLogin, (req, res) => {
   userQueries.getUserInfoAndPosts(req.session.userID)
     .then((info) => {
-      console.log(info);
       res.render('profile', {
         title: 'Profile Page',
         id: info.user.user_id,
@@ -123,23 +122,8 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
         city: info.user.current_city,
         joined: info.user.date_joined,
         posts: info.posts
-      })
-    })
-  // userQueries.getUserByID(req.session.userID)
-  //   .then(user => {
-  //     userQueries.getUserPosts(req.session.userID)
-  //       .then(posts => {
-  //         res.render('profile', {
-  //           posts,
-  //           title: 'Profile Page',
-  //           id: user.user_id,
-  //           imgNum: user.img_num,
-  //           name: user.name,
-  //           city: user.current_city,
-  //           joined: user.date_joined
-  //         });
-  //       });
-  //   });
+      });
+    });
 });
 
 
