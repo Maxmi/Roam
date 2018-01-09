@@ -106,30 +106,40 @@ users.post('/login', (req, res) => {
         }
       });
   }
-
-
 }); //end of post route
 
 
 
 // route to profile page - GET user info and user's posts
 users.get('/profile', mid.requiresLogin, (req, res) => {
-
-  userQueries.getUserByID(req.session.userID)
-    .then(user => {
-      userQueries.getUserPosts(req.session.userID)
-        .then(posts => {
-          res.render('profile', {
-            posts,
-            title: 'Profile Page',
-            id: user.user_id,
-            imgNum: user.img_num,
-            name: user.name,
-            city: user.current_city,
-            joined: user.date_joined
-          });
-        });
-    });
+  userQueries.getUserInfoAndPosts(req.session.userID)
+    .then((info) => {
+      console.log(info);
+      res.render('profile', {
+        title: 'Profile Page',
+        id: info.user.user_id,
+        imgNum: info.user.img_num,
+        name: info.user.name,
+        city: info.user.current_city,
+        joined: info.user.date_joined,
+        posts: info.posts
+      })
+    })
+  // userQueries.getUserByID(req.session.userID)
+  //   .then(user => {
+  //     userQueries.getUserPosts(req.session.userID)
+  //       .then(posts => {
+  //         res.render('profile', {
+  //           posts,
+  //           title: 'Profile Page',
+  //           id: user.user_id,
+  //           imgNum: user.img_num,
+  //           name: user.name,
+  //           city: user.current_city,
+  //           joined: user.date_joined
+  //         });
+  //       });
+  //   });
 });
 
 

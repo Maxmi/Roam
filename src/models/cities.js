@@ -1,5 +1,10 @@
 const db = require('./db');
 
+const getCities = () => db.any(
+  `SELECT city_id, city_name
+  FROM cities`
+);
+
 const getCityInfo = city => db.one(
   `SELECT city_name, city_info
    FROM cities
@@ -17,16 +22,8 @@ const getCityPosts = city => db.any(
 );
 
 
-// const addCity = (city_name) => db.one(
-//   `INSERT INTO cities (city_name)
-//     VALUES ($1)
-//     RETURNING *`,
-//   [city_name],
-// );
-//
-
 module.exports = {
+  getCities,
   getCityInfo,
   getCityPosts
-  // addCity,
 };

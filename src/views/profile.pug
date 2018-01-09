@@ -3,9 +3,10 @@ block content
   
   if name 
     div.profileTop
-      //- h2.profileTitle Hi #{name}
       a#logoutlink.link(href='logout') Log Out
+      //put it on the far right corner 
       a#homelink.link(href='/') Home Page
+      //make some logo of home page and put it on the far left corner
     
     div#userInfo
       form#userInfo(action=`/users/${userID}` method='POST')
@@ -26,17 +27,18 @@ block content
             span#joined(contenteditable='true') #{joined.toString().slice(0,15)}
         br
         button#edit.btn.btn-info(type='submit') Edit Profile
-  else 
-      h1 #{title}
-      h2 You need to be logged in to view this page
-
-  div#userPosts
-    span Posts:
-      div
-        each post in posts
-          div.postCard
-            h3= post.city_name
-            p= post.title  
-            p= post.content  
-            p= post.date_added
   
+
+    div#userPosts
+      span Posts:
+        div
+          each post in posts
+            div.postCard
+              h3= post.city_name
+              p= post.title  
+              p= post.content  
+              p= post.date_added
+  
+  else 
+    h1 #{title}
+    h2 You need to be logged in to view this page

@@ -3,11 +3,9 @@ block content
   h1 #{title} 
   div#form
     form(method='POST' action='/users/login')
-      //- label(for='email') Email:
       input#email.form-control-sm(type='email' name='email' placeholder='email')
       br
       
-      //- label(for='password') Password:
       input#password.form-control-sm(type='password' name='password' placeholder='password')
       br
       

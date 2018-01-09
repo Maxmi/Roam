@@ -19,7 +19,7 @@ const editPost = (postID, content) => db.one(
 
 const deletePost = postID => db.one (
   `DELETTE FROM posts
-  WHERE id = $1`,
+  WHERE post_id = $1`,
   [postID]
 );
 

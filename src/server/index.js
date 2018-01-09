@@ -1,7 +1,5 @@
 const express = require('express');
 const index = express.Router();
-// const userQueries = require('../models/users');
-// const postQueries = require('../models/posts');
 
 const userRoutes = require('./users');
 const postRoutes = require('./posts');
