@@ -8,37 +8,38 @@ block content
       a#homelink.link(href='/') Home Page
       //make some logo of home page and put it on the far left corner
     
-    div#userInfo
-      form#userInfo(action=`/users/${userID}` method='POST')
-        div.form-group
-          div(name='img').form-control
-            img(src=`/images/userPics/img${imgNum}.jpeg`)
-        div.form-group
-          label(for='name') Name: 
-          div(name='name').form-control
-            span#name(contenteditable='true') #{name}
-        div.form-group
-          label(for='city') City: 
-          div(name='city').form-control
-            span#city(contenteditable='true') #{city}
-        div.form-group
-          label(for='date') Date joined: 
-          div(name='date').form-control
-            span#joined #{joined.toString().slice(0,15)}
-        br
-        button#edit.btn.btn-info(type='submit') Edit Profile
-  
+    div.container
+      div#userInfo
+        form#userInfo(action=`/users/${userID}` method='POST')
+          div.form-group
+            div(name='img').form-control
+              img(src=`/images/userPics/img${imgNum}.jpeg`)
+          div.form-group
+            label(for='name') Name: 
+            div(name='name').form-control
+              span#name(contenteditable='true') #{name}
+          div.form-group
+            label(for='city') City: 
+            div(name='city').form-control
+              span#city(contenteditable='true') #{city}
+          div.form-group
+            label(for='date') Date joined: 
+            div(name='date').form-control
+              span#joined #{joined.toString().slice(0,15)}
+          br
+          button#edit.btn.btn-info(type='submit') Edit Profile
+    
 
-    div#userPosts
-      span Posts:
-        div
-          each post in posts
-            div.postCard
-              h3= post.city_name
-              p= post.title  
-              p= post.content  
-              p= post.date_added
-  
+      div#userPosts
+        each post in posts
+          div.postCard
+            h3= post.city_name
+            p= post.title  
+            p= post.content  
+            p= post.date_added
+    
+      div.profileFooter
+      
   else 
     h1 #{title}
     h2 You need to be logged in to view this page

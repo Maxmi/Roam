@@ -31,7 +31,10 @@ const getUserPosts = userID => db.any(
 
 
 const getUserInfoAndPosts = userID => db.multi(
-  `SELECT name, current_city, date_joined, img_num FROM users WHERE user_id=$1;SELECT posts.post_id, posts.title, posts.content, posts.date_added, posts.city_id, cities.city_name
+  `SELECT name, current_city, date_joined, img_num
+      FROM users
+      WHERE user_id=$1;
+    SELECT posts.post_id, posts.title, posts.content, posts.date_added, posts.city_id, cities.city_name
       FROM posts
       JOIN users
       ON posts.user_id = users.user_id

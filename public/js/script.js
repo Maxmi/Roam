@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // get user info
-
+  
 
 
   // update user profile

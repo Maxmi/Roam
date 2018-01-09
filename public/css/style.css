@@ -1,3 +1,6 @@
+/*******************************************
+              INDEX PAGE
+/*******************************************/
 html, body {
   height: 100%;
 }
@@ -41,6 +44,7 @@ cite {
   font-size: 10px;
 }
 
+
 div.links {
   padding-top: 20px;
   float: right;
@@ -60,6 +64,10 @@ a.link {
 div.footer {
   height: 100px;
 }
+
+/*******************************************
+        MAIN PAGE FOR LOGGED IN USERS
+/*******************************************/
 
 div.cities {
   clear: both;
@@ -100,10 +108,28 @@ div.item {
   text-align: center;
 }
 
+/*******************************************
+            USER PROFILE PAGE
+/*******************************************/
+
 div#userInfo {
-  width: 40%;
-  margin: 20px;
+  width: 30%;
+  /*margin: 20px;*/
+  padding: 20px;
   float: left;
+  border: 1px solid #000;
+}
+
+div#userPosts {
+  /*width: 70%;*/
+  /*margin: 20px;*/
+  padding: 20px;
+  float: right;
+  border: 1px solid #000;
+}
+
+div.profileFooter {
+  clear: both;
 }
 
 div.profileTop {
@@ -114,11 +140,71 @@ div.profileTop {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px 5%;
+  /*margin: 10px 5%;*/
   float: right;
+  width: 100%;
 }
 
 div#newPost {
   width: 50%;
   margin: 0 auto;
+}
+
+/*******************************************
+              CITY INFO PAGE
+/*******************************************/
+div.cityBanner {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+}
+
+div.Tokyo {
+  background-image: url('http://blog.nezasa.com/wp-content/uploads/2014/04/Japan-Hakone-Chureito-Pagoda-with-Mt.-Fuji.jpg');
+}
+
+div.Dubai {
+  background-image: url('https://www.desertplanners.net/wp-content/uploads/2017/07/burj-khalifa-2.jpg')
+}
+
+div.Sydney {
+  background-image: url('http://www.hotelroomsearch.net/im/2014/10/sydney-australia-1.jpg')
+}
+
+
+div.cityInfo {
+  border: 1px solid #000;
+  padding: 10px;
+  height: 300px;
+}
+
+div.btnWrapper {
+  text-align: center;
+  margin: 10px;
+}
+
+div.itemPost {
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+div.postContent {
+  font-style: italic;
+}
+
+div.postData {
+  text-align: right;
+  font-style: italic;
+}
+span.date {
+  font-size: 12px;
+}
+
+p.title {
+  font-weight: bold;
+}
+
+p.content {
+  /*font-style: italic;*/
 }

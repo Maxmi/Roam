@@ -1,20 +1,28 @@
 extends layout
 block content
-  div.banner
-    img
+  if name === 'Tokyo'
+    div.cityBanner.Tokyo
+  if name === 'Dubai'
+    div.cityBanner.Dubai
+  if name === 'Sydney'
+    div.cityBanner.Sydney
+    
   div.container
-    div.info
+    div.cityInfo
       h3 #{name}
       h4 #{info}
-      a#linkToAddNewPost(href='/posts/newPost') Add New Review 
+    
+    div.btnWrapper
+      a#linkToAddNewPost.link(href='/posts/newPost') Add New Review 
 
-    div#userPosts
-      p Posts:
-        div
-          each post in posts
-            div
-              p= post.title  
-              p= post.content  
-              p= post.date_added
-              p= post.name
+    div.posts 
+      each post in posts
+        div.itemPost
+          div.postContent
+            p.title= `"${post.title}"`
+            p.content= `"${post.content}"`  
+          div.postData
+            span= post.name
+            br
+            span.date= post.date_added.toString().slice(3,15)
     
