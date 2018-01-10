@@ -21,7 +21,6 @@ users.get('/signup', mid.loggedOut, (req, res) => {
   } else {
     res.redirect('/users/profile');
   }
-
 });
 
 
@@ -69,7 +68,6 @@ users.get('/login', mid.loggedOut, (req, res) => {
   } else {
     res.redirect('/users/profile');
   }
-
 });
 
 
@@ -127,6 +125,18 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
 });
 
 
+// route to update user profile
+users.put('/:userID', (req, res) => {
+  const {userID} = req.params;
+  const {name, current_city} = req.body;
+
+  userQueries.updateUser(userID, name, current_city)
+    .then(user => {
+      res.json(user);
+    });
+});
+
+
 // route to logout
 users.get('/logout', (req, res, next) => {
   if (req.session) {
@@ -136,5 +146,6 @@ users.get('/logout', (req, res, next) => {
     return next();
   }
 });
+
 
 module.exports = users;

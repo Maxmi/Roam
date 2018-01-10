@@ -7,9 +7,9 @@ const cityQueries = require('../models/cities');
 posts.get('/newPost', (req, res) => {
   cityQueries.getCities()
     .then(cities => {
-      // console.log(cities)
       res.render('newPost', {
         title: 'Add Review',
+        message: '',
         cities
       });
     });
@@ -18,20 +18,38 @@ posts.get('/newPost', (req, res) => {
 
 //route for sending new post
 posts.post('/newPost', (req, res) => {
-  console.log(req.body)
-  const userID = req.session.userID;
+  const {userID} = req.session;
   const { cityID, title, content } = req.body;
-  console.log(cityID, title, content)
-  //how to get value from dropdown list option ?
 
-  // return postQueries.savePost(title, content, userID, cityID)
-  //   .then(post => {
-  //     res.status(200).json(post);
-  //     // res.redirect('/cities/')
-  //   })
-  //   .catch(console.error);
+  return postQueries.savePost(title, content, userID, cityID)
+    .then(post => {
+      res.status(200).json(post);
+      console.log('new post added');
+    })
+    .catch(console.error);
 });
 
 
+//route for updating a post - done on user profile page
+posts.put('/:postID', (req, res) => {
+  const postID = parseInt(req.params.postID);
+  const {content} = req.body;
+  return postQueries.editPost(postID, content)
+    .then(() => {
+      res.render('users/profile');
+    })
+    .catch(console.error);
+});
+
+
+//route for deleting a post - done on user profile page
+posts.delete('/:postID', (req, res) => {
+  const postID = parseInt(req.params.postID);
+  return postQueries.deletePost(postID)
+    .then(() => {
+      res.render('users/profile');
+    })
+    .catch(console.error);
+});
 
 module.exports = posts;

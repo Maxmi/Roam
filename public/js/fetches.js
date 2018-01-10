@@ -1,9 +1,3 @@
-const getUserPosts = (userID) => {
-  return fetch('/posts')
-    .then(res => {
-      return res.json();
-    });
-};
 
 const addPost = post => {
   return fetch('/posts', {
@@ -12,8 +6,12 @@ const addPost = post => {
       'Content-Type': 'application/json'
     },
     body: 'JSON.stringify({post})'
-  });
+  })
+    .then(res => {
+      return res.json();
+    });
 };
+
 
 const updatePost = postID => {
   return fetch(`/posts/${postID}`, {
@@ -31,5 +29,18 @@ const updatePost = postID => {
 const deletePost = postID => {
   return fetch(`/posts/${postID}`, {
     method: 'delete'
+  });
+};
+
+
+const updateUser = userID => {
+  return fetch(`/users/${postID}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'html'
+    }
   })
-}
+    .then(res => {
+      return res;
+    });
+};

@@ -1,12 +1,17 @@
 extends layout
 block content
+  div.profileTop      
+    a#homelink.link(href='/') Home Page  
+    a#logoutlink.link(href='logout') Log Out
+    
   if name === 'Tokyo'
     div.cityBanner.Tokyo
   if name === 'Dubai'
     div.cityBanner.Dubai
   if name === 'Sydney'
     div.cityBanner.Sydney
-    
+      
+
   div.container
     div.cityInfo
       h3 #{name}

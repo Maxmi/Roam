@@ -2,18 +2,19 @@ extends layout
 block content
   
   if name 
-    div.profileTop
-      a#logoutlink.link(href='logout') Log Out
-      //put it on the far right corner 
+    div.profileTop      
       a#homelink.link(href='/') Home Page
-      //make some logo of home page and put it on the far left corner
-    
+      
+      a#logoutlink.link(href='logout') Log Out
+      
     div.container
       div#userInfo
         form#userInfo(action=`/users/${userID}` method='POST')
+          
           div.form-group
             div(name='img').form-control
               img(src=`/images/userPics/img${imgNum}.jpeg`)
+          
           div.form-group
             label(for='name') Name: 
             div(name='name').form-control
@@ -26,6 +27,7 @@ block content
             label(for='date') Date joined: 
             div(name='date').form-control
               span#joined #{joined.toString().slice(0,15)}
+          
           br
           button#edit.btn.btn-info(type='submit') Edit Profile
     
@@ -33,10 +35,13 @@ block content
       div#userPosts
         each post in posts
           div.postCard
-            h3= post.city_name
-            p= post.title  
-            p= post.content  
-            p= post.date_added
+            button.btn.btn-info Edit 
+            button.btn.btn-warning Delete 
+            p.city= post.city_name
+            p.title= post.title  
+            p.content= post.content  
+            span.date= post.date_added.toString().slice(3,15)
+            
     
       div.profileFooter
       

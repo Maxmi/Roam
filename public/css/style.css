@@ -5,10 +5,6 @@ html, body {
   height: 100%;
 }
 
-body {
-
-}
-
 div.indexwrapper {
   background-image: url('../images/opt-deanna-ritchie.jpg');
   background-repeat: no-repeat;
@@ -77,7 +73,6 @@ div.cities {
 }
 
 .citiesTitle {
-  /*color: white;*/
   font-family: 'Courgette', cursive;
 }
 
@@ -111,18 +106,30 @@ div.item {
 /*******************************************
             USER PROFILE PAGE
 /*******************************************/
+div.profileTop {
+  height: 60px;
+  width: 90%;
+  margin: 10px auto;
+  border: 1px solid #000;
+}
+
+#homelink {
+  float: left;
+}
+
+#logoutlink {
+  float: right;
+}
 
 div#userInfo {
   width: 30%;
-  /*margin: 20px;*/
   padding: 20px;
   float: left;
   border: 1px solid #000;
 }
 
 div#userPosts {
-  /*width: 70%;*/
-  /*margin: 20px;*/
+  width: 70%;
   padding: 20px;
   float: right;
   border: 1px solid #000;
@@ -140,9 +147,19 @@ div.profileTop {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 10px;
-  /*margin: 10px 5%;*/
+  margin: 10px;
   float: right;
   width: 100%;
+}
+
+div.postCard button {
+  float: right;
+}
+
+span.date {
+  font-size: 12px;
+  font-style: italic;
+  float: right;
 }
 
 div#newPost {
@@ -171,11 +188,10 @@ div.Sydney {
   background-image: url('http://www.hotelroomsearch.net/im/2014/10/sydney-australia-1.jpg')
 }
 
-
 div.cityInfo {
   border: 1px solid #000;
   padding: 10px;
-  height: 300px;
+  height: 150px;
 }
 
 div.btnWrapper {
@@ -187,6 +203,7 @@ div.itemPost {
   border: 1px solid #000;
   padding: 10px;
   border-radius: 10px;
+  margin: 15px 0;
 }
 
 div.postContent {
@@ -196,6 +213,7 @@ div.postContent {
 div.postData {
   text-align: right;
   font-style: italic;
+  height: 50px;
 }
 
 span.date {
@@ -206,9 +224,6 @@ p.title {
   font-weight: bold;
 }
 
-p.content {
-  /*font-style: italic;*/
-}
 
 /*******************************************
               ADD NEW POST PAGE
@@ -221,7 +236,6 @@ div.newPostHeader {
   text-align: center;
   font-family: 'Courgette', cursive;
 }
-
 
 div.newPostForm {
   text-align: center;

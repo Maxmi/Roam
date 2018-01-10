@@ -1,30 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  // get user info
-  
-
-
   // update user profile
 
 
 
-  // get user posts
+  // update user's post
 
 
 
-  // update post
+  // delete user's post
 
 
 
-  // delete post
+  // add new post for a city
 
 
 
-  // get city info
-
-
-
-  // add a post for city
 
 
 
