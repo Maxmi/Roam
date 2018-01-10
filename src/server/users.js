@@ -2,6 +2,7 @@ const express = require('express');
 const users = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const moment = require('moment');
 
 const userQueries = require('../models/users');
 
@@ -118,7 +119,7 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
         imgNum: info.user.img_num,
         name: info.user.name,
         city: info.user.current_city,
-        joined: info.user.date_joined,
+        joined: moment(info.user.date_joined).format("MMM DD, YYYY"),
         posts: info.posts
       });
     });

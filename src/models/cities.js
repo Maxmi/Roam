@@ -5,6 +5,14 @@ const getCities = () => db.any(
   FROM cities`
 );
 
+
+const getCityById = cityID => db.one(
+  `SELECT city_name
+   FROM cities
+   WHERE city_id=$1`, [cityID]
+);
+
+
 //may need to delete later
 const getCityInfo = city => db.one(
   `SELECT city_name, city_info
@@ -34,7 +42,8 @@ const getCityInfoAndPosts = city => db.multi(
      ON posts.city_id = cities.city_id
      JOIN users
      ON posts.user_id = users.user_id
-     WHERE cities.city_name ilike $1`, [city])
+     WHERE cities.city_name ilike $1
+     ORDER BY date_added DESC`, [city])
   .then(info => {
     return {
       city: info[0][0],
@@ -48,6 +57,7 @@ const getCityInfoAndPosts = city => db.multi(
 
 module.exports = {
   getCities,
+  getCityById,
   getCityInfo,
   getCityPosts,
   getCityInfoAndPosts

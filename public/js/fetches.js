@@ -1,46 +1,49 @@
+const fetches = {
 
-const addPost = post => {
-  return fetch('/posts', {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: 'JSON.stringify({post})'
-  })
-    .then(res => {
-      return res.json();
+  addPost: (title, content, userID, cityID) => {
+    return fetch('/posts', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: 'JSON.stringify({title, content, userID, cityID})'
+    })
+      .then(res => {
+        return res.json();
+      });
+  },
+
+
+  updatePost: postID => {
+    return fetch(`/posts/${postID}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'html'
+      }
+    })
+      .then(res => {
+        return res;
+      });
+  },
+
+
+  deletePost: postID => {
+    return fetch(`/posts/${postID}`, {
+      method: 'delete'
     });
-};
+  },
 
 
-const updatePost = postID => {
-  return fetch(`/posts/${postID}`, {
-    method: 'put',
-    headers: {
-      'Content-Type': 'html'
-    }
-  })
-    .then(res => {
-      return res;
-    });
-};
+  updateUser: (userID, name, city) => {
+    return fetch(`/users/${userID}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'html'
+      }
+    })
+      .then(res => {
+        return res;
+      });
+  }
 
-
-const deletePost = postID => {
-  return fetch(`/posts/${postID}`, {
-    method: 'delete'
-  });
-};
-
-
-const updateUser = userID => {
-  return fetch(`/users/${postID}`, {
-    method: 'put',
-    headers: {
-      'Content-Type': 'html'
-    }
-  })
-    .then(res => {
-      return res;
-    });
 };

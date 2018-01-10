@@ -4,13 +4,7 @@ block content
     a#homelink.link(href='/') Home Page  
     a#logoutlink.link(href='logout') Log Out
     
-  if name === 'Tokyo'
-    div.cityBanner.Tokyo
-  if name === 'Dubai'
-    div.cityBanner.Dubai
-  if name === 'Sydney'
-    div.cityBanner.Sydney
-      
+  div(class='cityBanner ' + name)
 
   div.container
     div.cityInfo
@@ -29,5 +23,7 @@ block content
           div.postData
             span= post.name
             br
-            span.date= post.date_added.toString().slice(3,15)
+            span.date= moment(post.date_added).fromNow()
+            
+            
     

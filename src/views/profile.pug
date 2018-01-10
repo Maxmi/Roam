@@ -29,18 +29,18 @@ block content
               span#joined #{joined.toString().slice(0,15)}
           
           br
-          button#edit.btn.btn-info(type='submit') Edit Profile
+          button#editProfile.btn.btn-info(type='submit') Edit Profile
     
 
       div#userPosts
         each post in posts
           div.postCard
-            button.btn.btn-info Edit 
-            button.btn.btn-warning Delete 
+            button.editPost.btn.btn-info Edit 
+            button.deletePost.btn.btn-warning Delete 
             p.city= post.city_name
             p.title= post.title  
             p.content= post.content  
-            span.date= post.date_added.toString().slice(3,15)
+            span.date= post.date_added
             
     
       div.profileFooter

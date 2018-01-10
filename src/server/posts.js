@@ -22,9 +22,13 @@ posts.post('/newPost', (req, res) => {
   const { cityID, title, content } = req.body;
 
   return postQueries.savePost(title, content, userID, cityID)
-    .then(post => {
-      res.status(200).json(post);
-      console.log('new post added');
+    .then(() => {
+      return cityQueries.getCityById(cityID);
+    })
+    .then(data => {
+      // console.log();
+      res.redirect(`/cities/${data.city_name.toLowerCase()}`);
+      // console.log('new post added');
     })
     .catch(console.error);
 });

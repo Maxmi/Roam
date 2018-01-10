@@ -29,6 +29,7 @@ const getUserPosts = userID => db.any(
   [userID]
 );
 
+//to_date('20170103','YYYYMMDD');
 
 const getUserInfoAndPosts = userID => db.multi(
   `SELECT name, current_city, date_joined, img_num
