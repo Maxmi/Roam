@@ -9,7 +9,6 @@ posts.get('/newPost', (req, res) => {
     .then(cities => {
       res.render('newPost', {
         title: 'Add Review',
-        message: '',
         cities
       });
     });
@@ -26,9 +25,7 @@ posts.post('/newPost', (req, res) => {
       return cityQueries.getCityById(cityID);
     })
     .then(data => {
-      // console.log();
       res.redirect(`/cities/${data.city_name.toLowerCase()}`);
-      // console.log('new post added');
     })
     .catch(console.error);
 });

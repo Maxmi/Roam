@@ -20,7 +20,7 @@ users.get('/signup', mid.loggedOut, (req, res) => {
       name: req.session.userName, // setting property name on req session obj
     });
   } else {
-    res.redirect('/users/profile');
+    res.redirect('/');
   }
 });
 
@@ -46,7 +46,7 @@ users.post('/signup', (req, res) => {
         // start tracking the user
           req.session.userID = user.user_id;
           req.session.userName = user.name;
-          res.redirect('/users/profile');
+          res.redirect('/');
         }).catch((err) => {
           res.render('signup', {
             title: 'Sign Up',
@@ -67,7 +67,7 @@ users.get('/login', mid.loggedOut, (req, res) => {
       name: req.session.userName,
     });
   } else {
-    res.redirect('/users/profile');
+    res.redirect('/');
   }
 });
 
@@ -83,26 +83,25 @@ users.post('/login', (req, res) => {
   } else {
     userQueries.getUser(email)
       .then(user => {
-        if(!user) {
-          res.render('login', {
-            title: 'Log In',
-            error: 'Could not retrieve user.'
+        bcrypt.compare(password, user.password)
+          .then(result => {
+            if(!result) {
+              res.render('login', {
+                title: 'Log In',
+                error: 'Wrong email or password.'
+              });
+            } else {
+              req.session.userID = user.user_id;
+              req.session.userName = user.name;
+              return res.redirect('/');
+            }
           });
-        } else {
-          bcrypt.compare(password, user.password)
-            .then(result => {
-              if(!result) {
-                res.render('login', {
-                  title: 'Log In',
-                  error: 'Wrong email or password.'
-                });
-              } else {
-                req.session.userID = user.user_id;
-                req.session.userName = user.name;
-                return res.redirect('/users/profile');
-              }
-            });
-        }
+      })
+      .catch(err => {
+        res.render('login', {
+          title: 'Log In',
+          error: 'User not found.'
+        });
       });
   }
 }); //end of post route
@@ -120,7 +119,8 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
         name: info.user.name,
         city: info.user.current_city,
         joined: moment(info.user.date_joined).format("MMM DD, YYYY"),
-        posts: info.posts
+        posts: info.posts,
+        moment
       });
     });
 });
