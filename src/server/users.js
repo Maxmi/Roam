@@ -118,7 +118,7 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
         imgNum: info.user.img_num,
         name: info.user.name,
         city: info.user.current_city,
-        joined: moment(info.user.date_joined).format("MMM DD, YYYY"),
+        joined: moment(info.user.date_joined).format('MMM DD, YYYY'),
         posts: info.posts,
         moment
       });

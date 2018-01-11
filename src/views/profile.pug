@@ -35,13 +35,17 @@ block content
       div#userPosts
         each post in posts
           div.postCard
-            button.editPost.btn.btn-info Edit 
-            button.deletePost.btn.btn-warning Delete 
+            button.delete
+              i.material-icons.delete delete
+
+            button.edit
+              i.material-icons mode_edit
+                            
             p.city= post.city_name
             p.title= post.title  
             p.content= post.content  
             span.date= moment(post.date_added).fromNow()
-            
+            span.postID= post.post_id
     
       div.profileFooter
       

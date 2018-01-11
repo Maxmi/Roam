@@ -162,6 +162,10 @@ span.date {
   float: right;
 }
 
+span.postID {
+  display: none;
+}
+
 div#newPost {
   width: 50%;
   margin: 0 auto;

@@ -45,10 +45,10 @@ posts.put('/:postID', (req, res) => {
 
 //route for deleting a post - done on user profile page
 posts.delete('/:postID', (req, res) => {
-  const postID = parseInt(req.params.postID);
+  const postID = req.params.postID;
   return postQueries.deletePost(postID)
     .then(() => {
-      res.render('users/profile');
+      res.render('profile');
     })
     .catch(console.error);
 });

@@ -64,7 +64,7 @@ module.exports = {
   addUser,
   getUser,
   // getUserByID,
-  // getUserPosts,
+  // getUser Posts,
   getUserInfoAndPosts,
   updateUser
 };
