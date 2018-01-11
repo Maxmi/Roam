@@ -22,7 +22,7 @@ const getCityById = cityID => db.one(
 
 //may need to delete later
 // const getCityPosts = city => db.any(
-//   `SELECT posts.title, posts.content, posts.date_added, cities.city_name, users.name
+//   `SELECT posts.content, posts.date_added, cities.city_name, users.name
 //     FROM posts
 //     JOIN cities
 //     ON posts.city_id = cities.city_id
@@ -36,7 +36,7 @@ const getCityInfoAndPosts = city => db.multi(
   `SELECT city_name, city_info
     FROM cities
     WHERE city_name ilike $1;
-   SELECT posts.title, posts.content, posts.date_added, cities.city_name, users.name
+   SELECT posts.content, posts.date_added, cities.city_name, users.name
      FROM posts
      JOIN cities
      ON posts.city_id = cities.city_id

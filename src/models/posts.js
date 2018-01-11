@@ -1,10 +1,10 @@
 const db = require('./db');
 
-const savePost = (title, content, userID, cityID) => db.one(
-  `INSERT INTO posts (title, content, user_id, city_id)
-    VALUES ($1, $2, $3, $4)
+const savePost = (content, userID, cityID) => db.one(
+  `INSERT INTO posts (content, user_id, city_id)
+    VALUES ($1, $2, $3)
     RETURNING *`,
-  [title, content, userID, cityID]
+  [content, userID, cityID]
 );
 
 

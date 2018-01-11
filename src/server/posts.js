@@ -18,9 +18,9 @@ posts.get('/newPost', (req, res) => {
 //route for sending new post
 posts.post('/newPost', (req, res) => {
   const {userID} = req.session;
-  const { cityID, title, content } = req.body;
+  const { cityID, content } = req.body;
 
-  return postQueries.savePost(title, content, userID, cityID)
+  return postQueries.savePost(content, userID, cityID)
     .then(() => {
       return cityQueries.getCityById(cityID);
     })
@@ -36,8 +36,8 @@ posts.put('/:postID', (req, res) => {
   const postID = parseInt(req.params.postID);
   const {content} = req.body;
   return postQueries.editPost(postID, content)
-    .then(() => {
-      res.render('users/profile');
+    .then((post) => {
+      res.json(post)
     })
     .catch(console.error);
 });

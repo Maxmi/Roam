@@ -171,6 +171,10 @@ div#newPost {
   margin: 0 auto;
 }
 
+.selected {
+  border: 1px solid steelblue;
+}
+
 /*******************************************
               CITY INFO PAGE
 /*******************************************/

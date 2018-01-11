@@ -5,6 +5,7 @@ block content
     div.profileTop      
       a#homelink.link(href='/') Home Page
       
+      a#reviewLink.link(href='/posts/newPost') Review places
       a#logoutlink.link(href='logout') Log Out
       
     div.container
@@ -37,15 +38,11 @@ block content
           div.postCard
             button.delete
               i.material-icons.delete delete
-
             button.edit
-              i.material-icons mode_edit
-                            
+              i.material-icons.edit mode_edit
             p.city= post.city_name
-            p.title= post.title  
-            p.content= post.content  
+            p.content(data-id= post.post_id)= post.content  
             span.date= moment(post.date_added).fromNow()
-            span.postID= post.post_id
     
       div.profileFooter
       

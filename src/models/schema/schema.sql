@@ -10,6 +10,10 @@ CREATE TABLE users (
   img_num INT
 );
 
+INSERT INTO users (name, email, password, current_city)
+ VALUES
+ ('Mira', 'b_gulmira@mail.ru', '123', 'Oakland');
+
 
 DROP TABLE IF EXISTS cities;
 
@@ -30,7 +34,6 @@ DROP TABLE IF EXISTS posts;
 
 CREATE TABLE posts (
   post_id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   date_added TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   user_id INT REFERENCES users,
