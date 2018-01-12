@@ -19,12 +19,12 @@ block content
           div.form-group
             label(for='name') Name: 
             div(name='name').form-control
-              span#name(contenteditable='true') #{name}
+              span#name #{name}
               
           div.form-group
             label(for='city') City: 
             div(name='city').form-control
-              span#city(contenteditable='true') #{city}
+              span#city #{city}
           div.form-group
             label(for='date') Date joined: 
             div(name='date').form-control
@@ -36,13 +36,13 @@ block content
 
       div#userPosts
         each post in posts
-          div.postCard
+          div.postCard(data-id= post.post_id)
             button.delete
               i.material-icons.delete delete
             button.edit
               i.material-icons.edit mode_edit
             p.city= post.city_name
-            p.content(data-id= post.post_id)= post.content  
+            p.content= post.content  
             span.date= moment(post.date_added).fromNow()
     
       div.profileFooter
@@ -50,3 +50,5 @@ block content
   else 
     h1 #{title}
     h2 You need to be logged in to view this page
+
+  script(src="/js/script.js")
