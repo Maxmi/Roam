@@ -10,11 +10,6 @@ CREATE TABLE users (
   img_num INT
 );
 
-INSERT INTO users (name, email, password, current_city)
- VALUES
- ('Mira', 'b_gulmira@mail.ru', '123', 'Oakland');
-
-
 DROP TABLE IF EXISTS cities;
 
 CREATE TABLE cities (
@@ -26,9 +21,9 @@ CREATE TABLE cities (
 
 INSERT INTO cities (country, city_name, city_info)
  VALUES
- ('Japan', 'Tokyo', 'nice city'),
- ('UAE', 'Dubai', 'fantastic'),
- ('Australia', 'Sydney', 'awesome city');
+ ('Japan', 'Tokyo', 'Tokyo (東京 Tōkyō) is the enormous and wealthy capital of Japan, overflowing with culture, commerce and, most of all, people. The core of the most populated urban area in the world, Tokyo is a fascinating and dynamic metropolis that mixes foreign influences, consumer culture and global business along with remnants of the capital of old Japan. From modern electronics and gleaming skyscrapers to cherry blossoms and the Imperial Palace, this is a city that represents the entire sweep of Japanese history and culture. Tokyo truly has something for every traveller.'),
+ ('UAE', 'Dubai', ''),
+ ('Australia', 'Sydney', '');
 
 DROP TABLE IF EXISTS posts;
 

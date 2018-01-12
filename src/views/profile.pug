@@ -10,8 +10,8 @@ block content
       
     div.container
       div#userInfo
-        form#userInfo(action=`/users/${userID}` method='POST')
-          
+        form#profile(action=`/users/${userID}` method='POST')
+          span#id #{id}
           div.form-group
             div(name='img').form-control
               img(src=`/images/userPics/img${imgNum}.jpeg`)
@@ -20,6 +20,7 @@ block content
             label(for='name') Name: 
             div(name='name').form-control
               span#name(contenteditable='true') #{name}
+              
           div.form-group
             label(for='city') City: 
             div(name='city').form-control

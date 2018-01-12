@@ -12,26 +12,9 @@ const getUser = (email) => db.one(
   'SELECT user_id, name, password FROM users WHERE email=$1;', [email]
 );
 
-//get profile info - this function may be deleted later
-// const getUserByID = userID => db.one(
-//   'SELECT name, current_city, date_joined, img_num FROM users WHERE user_id=$1;', [userID]
-// );
-
-//this function may be deleted later
-// const getUserPosts = userID => db.any(
-//   `SELECT posts.post_id, posts.content, posts.date_added, posts.city_id, cities.city_name
-//     FROM posts
-//     JOIN users
-//     ON posts.user_id = users.user_id
-//     JOIN cities
-//     ON posts.city_id = cities.city_id
-//     WHERE users.user_id = $1;`,
-//   [userID]
-// );
-
 
 const getUserInfoAndPosts = userID => db.multi(
-  `SELECT name, current_city, date_joined, img_num
+  `SELECT user_id, name, current_city, date_joined, img_num
       FROM users
       WHERE user_id=$1;
     SELECT posts.post_id, posts.content, posts.date_added, posts.city_id, cities.city_name
@@ -51,11 +34,11 @@ const getUserInfoAndPosts = userID => db.multi(
   });
 
 
-const updateUser = (id, name, current_city) => db.one(
+const updateUser = (user_id, name, current_city) => db.one(
   `UPDATE users
-  SET name = $2, current_city = $3,
-  WHERE id = $1
-  RETURNING *`, [id, name, current_city]
+  SET name = $2, current_city = $3
+  WHERE user_id= $1
+  RETURNING *`, [user_id, name, current_city]
 );
 
 
@@ -63,8 +46,6 @@ const updateUser = (id, name, current_city) => db.one(
 module.exports = {
   addUser,
   getUser,
-  // getUserByID,
-  // getUser Posts,
   getUserInfoAndPosts,
   updateUser
 };

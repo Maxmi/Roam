@@ -1,16 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   // update user profile
-  // document.getElementById('editProfile').addEventListener('click', (event)=> {
-  //   event.preventDefault();
-  //   let name = document.getElementById('name').value;
-  //   let city = document.getElementById('city').value;
-  //   // let userID
-  //   fetches.updateUser(userID, name, city)
-  //     .then(() => {
-  //
-  //     })
-  // })
+  const updateUser = (userID, name, current_city) => {
+    return fetch(`/users/${userID}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name, current_city})
+    });
+  };
+
+
+  const editBtn = document.getElementById('editProfile');
+
+  editBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('name').textContent;
+    const city = document.getElementById('city').textContent;
+    const userID = document.getElementById('id').textContent;
+    updateUser(userID, name, city)
+      .then(res => res.json());
+  });
+
 
 
   // delete user's post
@@ -38,20 +50,19 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  //making review editable
+  //update user's post
+
+  //making it editable
   postsWrapper.addEventListener('click', (event) => {
     if(event.target.classList.contains('edit')) {
       const postCard = event.target.closest('.postCard');
-      // console.log(postCard);
       const post = postCard.children[3];
-      // console.log(post);
       post.setAttribute('contenteditable', 'true');
       post.focus();
     }
   });
 
 
-  //update review
   const updatePost = (postID, content) => {
     return fetch(`/posts/${postID}`, {
       method: 'put',
@@ -66,21 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const posts = document.querySelectorAll('.content');
   posts.forEach(post => {
     post.addEventListener('blur', (event) => {
-      // if(event.keyCode === 13) {
-        const postID = event.target.getAttribute('data-id');
-        // console.log(postID);
-        const content = event.target.closest('.content').textContent;
-        // console.log(content);
-        updatePost(postID, content)
-          .then(res => {
-            res.json();
-          });
-      // }
+      const postID = event.target.getAttribute('data-id');
+      const content = event.target.closest('.content').textContent;
+      updatePost(postID, content)
+        .then(res => {
+          res.json();
+        });
     });
   });
-
-
-
-
 
 }); //most outer function
