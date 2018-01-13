@@ -4,14 +4,13 @@ block content
   if name 
     div.profileTop      
       a#homelink.link(href='/') Home Page
-      
+    
       a#reviewLink.link(href='/posts/newPost') Review places
       a#logoutlink.link(href='logout') Log Out
       
     div.container
-      div#userInfo
+      div#userInfo(data-id= `${id}`)
         form#profile(action=`/users/${userID}` method='POST')
-          span#id #{id}
           div.form-group
             div(name='img').form-control
               img(src=`/images/userPics/img${imgNum}.jpeg`)
@@ -25,6 +24,7 @@ block content
             label(for='city') City: 
             div(name='city').form-control
               span#city #{city}
+              
           div.form-group
             label(for='date') Date joined: 
             div(name='date').form-control
@@ -39,16 +39,29 @@ block content
           div.postCard(data-id= post.post_id)
             button.delete
               i.material-icons.delete delete
+              
             button.edit
               i.material-icons.edit mode_edit
             p.city= post.city_name
             p.content= post.content  
             span.date= moment(post.date_added).fromNow()
     
+      div#dialogoverlay
+        div#dialogbox
+          div
+            div#dialogboxhead
+              span.close x
+              p Confirm the action
+            div#dialogboxbody
+            div#dialogboxfoot
+            
+            
+            
       div.profileFooter
       
   else 
     h1 #{title}
     h2 You need to be logged in to view this page
 
+  script(src="/js/dialog.js")
   script(src="/js/script.js")

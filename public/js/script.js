@@ -11,35 +11,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
-
-  const editBtn = document.getElementById('editProfile');
+  const profile = document.getElementById('userInfo');
   const name = document.getElementById('name');
+  const nameWrapper = document.getElementsByName('name')[0];
   const city = document.getElementById('city');
+  const cityWrapper = document.getElementsByName('city')[0];
 
-  editBtn.addEventListener('click', (event) => {
+  profile.addEventListener('click', (event) => {
+    const editBtn = event.target;
     event.preventDefault();
     if(editBtn.textContent === 'Edit Profile') {
       //making name and city editable
       name.setAttribute('contenteditable', 'true');
       city.setAttribute('contenteditable', 'true');
-      name.classList.add('change');
+      nameWrapper.classList.add('change');
       name.focus();
-      city.classList.add('change');
+      cityWrapper.classList.add('change');
       editBtn.textContent = 'Save';
     } else {
       //saving updated info
       const newName = name.textContent;
       const newCity = city.textContent;
-      const userID = document.getElementById('id').textContent;
+      const userID = profile.getAttribute('data-id');
+
       updateUser(userID, newName, newCity)
         .then(
           res => res.json()
         );
       name.removeAttribute('contenteditable');
       city.removeAttribute('contenteditable');
-      name.classList.remove('change');
-      city.classList.remove('change');
-      editBtn.textContent = 'Update Profile';
+      nameWrapper.classList.remove('change');
+      cityWrapper.classList.remove('change');
+      editBtn.textContent = 'Edit Profile';
     }
   });
 
@@ -51,20 +54,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
+  const confirm = new CustomConfirm();
+
   const postsWrapper = document.getElementById('userPosts');
 
   postsWrapper.addEventListener('click', (event) => {
     if(event.target.classList.contains('delete')) {
       const postCard = event.target.closest('.postCard');
       const postID = postCard.getAttribute('data-id');
-
-      deletePost(postID)
-        .then(() => {
-          postsWrapper.removeChild(postCard);
-        })
-        .catch(console.error);
+      const handler = () => {
+        deletePost(postID)
+          .then(() => {
+            postsWrapper.removeChild(postCard);
+          })
+          .catch(console.error);
+      }
+      confirm.render('Are you sure you want to delete this post?', handler);
     }
   });
+
+  
 
 
   //update user's post

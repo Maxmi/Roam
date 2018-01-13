@@ -34,11 +34,11 @@ const getUserInfoAndPosts = userID => db.multi(
   });
 
 
-const updateUser = (user_id, name, current_city) => db.one(
+const updateUser = (user_id, name, city) => db.one(
   `UPDATE users
   SET name = $2, current_city = $3
   WHERE user_id= $1
-  RETURNING *`, [user_id, name, current_city]
+  RETURNING *`, [user_id, name, city]
 );
 
 

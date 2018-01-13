@@ -2,12 +2,11 @@ extends layout
 block content
   
       if currentUser
-        div.poem
-          h2 Welcome to Roam, #{currentUserName}!
-        div.links
-          a.link(href='users/profile') View Profile  
-          a.link(href='users/logout') Log Out
-          
+        h2.center Welcome to Roam, #{currentUserName}!
+        //- div.links
+        //-   a.link(href='users/profile') View Profile  
+        //-   a.link(href='users/logout') Log Out
+        //- 
         
         div.cities
           h2.citiesTitle Favorite Locations of our users
@@ -33,8 +32,9 @@ block content
 
       
       else 
-        div.indexwrapper
-          div.index
+        div.poem
+          div.indexwrapper
+            div.index
 
             div.links
               a.link(href='users/signup') Sign Up

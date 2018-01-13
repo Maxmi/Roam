@@ -129,9 +129,8 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
 // route to update user profile
 users.put('/:userID', (req, res) => {
   const userID = parseInt(req.params.userID);
-  const {name, current_city} = req.body;
-
-  userQueries.updateUser(userID, name, current_city)
+  const {newName, newCity} = req.body;
+  userQueries.updateUser(userID, newName, newCity)
     .then(user => {
       res.json(user);
     });

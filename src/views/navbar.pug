@@ -1,0 +1,14 @@
+nav
+  div.container
+    a.navbar-brand(href='/')
+      if !currentUser 
+        a.nav-item.nav-link(href='/signup') Sign Up
+        
+      else 
+        div.left
+          a#homelink.link(href='/') Home Page  
+        div.right 
+          a#reviewLink.link(href='/posts/newPost') Review places
+          a.link(href='users/profile') View Profile  
+          a.link(href='users/logout') Log Out
+        

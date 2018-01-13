@@ -1,4 +1,21 @@
 /*******************************************
+                NAVBAR
+/*******************************************/
+nav {
+  height: 10%;
+  border: 1px solid #000;
+  background-color: skyblue;
+}
+
+div.left {
+  float: left;
+}
+
+div.right {
+  float: right;
+}
+
+/*******************************************
               INDEX PAGE
 /*******************************************/
 html, body {
@@ -61,6 +78,8 @@ div.footer {
   height: 100px;
 }
 
+
+
 /*******************************************
         MAIN PAGE FOR LOGGED IN USERS
 /*******************************************/
@@ -103,6 +122,9 @@ div.item {
   text-align: center;
 }
 
+h2.center {
+  text-align: center;
+}
 /*******************************************
             USER PROFILE PAGE
 /*******************************************/
@@ -126,10 +148,6 @@ div#userInfo {
   padding: 20px;
   float: left;
   border: 1px solid #000;
-}
-
-#id {
-  display: none;
 }
 
 div#userPosts {
@@ -177,6 +195,64 @@ div#newPost {
 
 .change {
   border: 1px solid steelblue;
+}
+
+#dialogoverlay {
+	display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.5);
+}
+
+#dialogbox {
+	display: none;
+	position: fixed;
+	background-color: #f4f4f4;
+	width: 550px;
+	z-index: 1;
+  border: 2px solid tomato;
+  border-radius: 10px;
+}
+
+#dialogbox > div {
+  background: #FFF;
+  margin: 8px;
+  border-radius: 10px;
+  color: #000;
+}
+
+#dialogboxhead {
+  font-size: 19px;
+  padding: 10px;
+  color: #000;
+}
+
+.close {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+}
+
+#dialogboxbody {
+  padding:20px;
+  color: tomato;
+  font-weight: bold;
+}
+
+#dialogboxfoot {
+  padding:10px;
+  text-align:right;
+}
+
+#yes, #no {
+  color: #000;
+  border-radius: 5px;
+  margin: 0 5px;
 }
 
 /*******************************************
