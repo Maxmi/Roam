@@ -12,13 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   const profile = document.getElementById('userInfo');
+  const editBtn = document.getElementById('editProfile');
   const name = document.getElementById('name');
   const nameWrapper = document.getElementsByName('name')[0];
   const city = document.getElementById('city');
   const cityWrapper = document.getElementsByName('city')[0];
 
-  profile.addEventListener('click', (event) => {
-    const editBtn = event.target;
+  editBtn.addEventListener('click', (event) => {
+    // const editBtn = event.target;
     event.preventDefault();
     if(editBtn.textContent === 'Edit Profile') {
       //making name and city editable

@@ -48,7 +48,7 @@ p.cite {
 }
 
 p.error {
-  color: red;
+  color: tomato;
   background-color: white;
 }
 
@@ -80,7 +80,7 @@ div.footer {
 
 
 /*******************************************
-              SIGN UP PAGE
+            SIGN UP / LOGIN PAGE
 /*******************************************/
 #form {
   width: 90%;
@@ -95,9 +95,6 @@ div.footer {
 .form-control-sm {
   margin: 5px;
 }
-
-
-
 
 /*******************************************
         MAIN PAGE FOR LOGGED IN USERS
@@ -213,7 +210,7 @@ div#newPost {
 }
 
 .change {
-  border: 1px solid steelblue;
+  border: 1px solid tomato;
 }
 
 #dialogoverlay {
@@ -255,6 +252,7 @@ div#newPost {
   cursor: pointer;
   float: right;
   font-size: 20px;
+  color: tomato;
 }
 
 #dialogboxbody {

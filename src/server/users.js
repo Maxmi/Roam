@@ -120,6 +120,7 @@ users.get('/profile', mid.requiresLogin, (req, res) => {
   } else {
     userQueries.getUserInfoAndPosts(req.session.userID)
       .then((info) => {
+        req.session.userName = info.user.name;
         res.render('profile', {
           title: 'Profile Page',
           id: info.user.user_id,
