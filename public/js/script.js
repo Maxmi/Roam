@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  
+
 
 
   //update user's post

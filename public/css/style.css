@@ -4,7 +4,7 @@
 nav {
   height: 10%;
   border: 1px solid #000;
-  background-color: skyblue;
+  background-color: #00BFFF;
 }
 
 div.left {
@@ -77,6 +77,25 @@ a.link {
 div.footer {
   height: 100px;
 }
+
+
+/*******************************************
+              SIGN UP PAGE
+/*******************************************/
+#form {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form {
+  font-family: 'Courgette', cursive;
+}
+
+.form-control-sm {
+  margin: 5px;
+}
+
 
 
 

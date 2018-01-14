@@ -1,14 +1,15 @@
-nav
-  div.container
-    a.navbar-brand(href='/')
-      if !currentUser 
-        a.nav-item.nav-link(href='/signup') Sign Up
-        
-      else 
-        div.left
-          a#homelink.link(href='/') Home Page  
-        div.right 
-          a#reviewLink.link(href='/posts/newPost') Review places
-          a.link(href='users/profile') View Profile  
-          a.link(href='users/logout') Log Out
-        
+nav.navbar
+  div.left
+    a.link.navbar-brand(href='/') 
+      i.material-icons home
+    
+  div.right
+    if !currentUser && title === 'Home' || title === 'Sign Up' || title === 'Log In'
+      a.link(href='/users/signup') Sign Up
+      a.link(href='/users/login') Log In
+
+    else
+      a#reviewLink.link(href='/posts/newPost') Review places
+      a.link(href='/users/profile') View Profile  
+      a.link(href='/users/logout') Log Out
+  

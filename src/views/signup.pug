@@ -1,7 +1,7 @@
 extends layout
 block content
-  h1 #{title} 
   div#form
+    h3.form #{title} 
     form(method='POST' action='/users/signup')
       input#name.form-control-sm(type='text' name='name' placeholder='your name')
       br
@@ -17,4 +17,4 @@ block content
       
       p.error #{error}
     
-      button#signupBtn(type='submit') Sign Up
+      button#signupBtn.btn.btn-primary(type='submit') Sign Up

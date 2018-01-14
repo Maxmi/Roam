@@ -1,56 +1,52 @@
 extends layout
 block content
   
-      if currentUser
-        h2.center Welcome to Roam, #{currentUserName}!
-        //- div.links
-        //-   a.link(href='users/profile') View Profile  
-        //-   a.link(href='users/logout') Log Out
-        //- 
-        
-        div.cities
-          h2.citiesTitle Favorite Locations of our users
-          h3.citiesTitle Click on image to see the reviews and provide yours!
-          div.item.col-xs-6.col-lg-5
-            a(href='/cities/tokyo')
-              img.cityImg(src='http://blog.nezasa.com/wp-content/uploads/2014/04/Japan-Hakone-Chureito-Pagoda-with-Mt.-Fuji.jpg')
-              div.text Tokyo, Japan  
-                
-          div.item.col-xs-6.col-lg-5
-            a(href='/cities/dubai')
-              img.cityImg(src='https://www.desertplanners.net/wp-content/uploads/2017/07/burj-khalifa-2.jpg')
-              div.text  Dubai, UAE 
-                
-          div.item.col-xs-6.col-lg-5
-            a(href='/cities/sydney')
-              img.cityImg(src='http://www.hotelroomsearch.net/im/2014/10/sydney-australia-1.jpg')
-              div.text Sydney, Australia
-        
-        div.custom 
-          h3.citiesTitle Or - check out other cool destinations:
-          a.link(href='posts/newPost') Take me there
+  if currentUser
+    div.poem
+      h2.center Welcome to Roam, #{currentUserName}!
+  
+    div.cities
+      h2.citiesTitle Favorite Locations of our users
+      h3.citiesTitle Click on image to see the reviews and provide yours!
+      div.item.col-xs-6.col-lg-5
+        a(href='/cities/tokyo')
+          img.cityImg(src='http://blog.nezasa.com/wp-content/uploads/2014/04/Japan-Hakone-Chureito-Pagoda-with-Mt.-Fuji.jpg')
+          div.text Tokyo, Japan  
+            
+      div.item.col-xs-6.col-lg-5
+        a(href='/cities/dubai')
+          img.cityImg(src='https://www.desertplanners.net/wp-content/uploads/2017/07/burj-khalifa-2.jpg')
+          div.text  Dubai, UAE 
+            
+      div.item.col-xs-6.col-lg-5
+        a(href='/cities/sydney')
+          img.cityImg(src='http://www.hotelroomsearch.net/im/2014/10/sydney-australia-1.jpg')
+          div.text Sydney, Australia
+    
+    div.custom 
+      h3.citiesTitle Or - check out other cool destinations:
+      a.link(href='posts/newPost') Take me there
 
-      
-      else 
-        div.poem
-          div.indexwrapper
-            div.index
+  
+  else 
+    div.indexwrapper
+      div.index
 
-            div.links
-              a.link(href='users/signup') Sign Up
-              a.link(href='users/login') Log In
-                  
-            div.poem
-              pre
-                span To move, to breathe, to fly, to float, 
-                br
-                span To gain all while you give,
-                br
-                span To roam the roads of lands remote,
-                br
-                span To travel is to live.
-                
-                p.cite
-                  cite Hans Christian Andersen 
-                  
-          div.footer  
+      //- div.links
+      //-   a.link(href='users/signup') Sign Up
+      //-   a.link(href='users/login') Log In
+            
+      div.poem
+        pre
+          span To move, to breathe, to fly, to float, 
+          br
+          span To gain all while you give,
+          br
+          span To roam the roads of lands remote,
+          br
+          span To travel is to live.
+          
+          p.cite
+            cite Hans Christian Andersen 
+            
+    div.footer  

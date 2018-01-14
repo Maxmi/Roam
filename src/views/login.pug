@@ -1,7 +1,7 @@
 extends layout
 block content
-  h1 #{title} 
   div#form
+    h3.form #{title} 
     form(method='POST' action='/users/login')
       input#email.form-control-sm(type='email' name='email' placeholder='email')
       br
@@ -11,4 +11,4 @@ block content
       
       p.error #{error}
       
-      button#loginBtn(type='submit') Log In
+      button#loginBtn.btn.btn-primary(type='submit') Log In

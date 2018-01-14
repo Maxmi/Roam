@@ -1,9 +1,9 @@
 extends layout
 block content
+
   div.container.newPost
     div.newPostHeader
       h2.newPostHeader Share your experience
-      //- p #{message}
     
     div.newPostForm
       form#newPost(method='POST' action='/posts/newPost')
@@ -14,9 +14,6 @@ block content
                 option(value= city.city_id) #{city.city_name}
             
         div#newPost.form-group
-          //- input#title.form-control(type='text' name='title' placeholder='give a title to your review')
-          //- br
-      
           textarea#postBody(name='content' rows='15' cols='50')
           br
           button#addPost.btn.btn-primary(type='submit') Submit!

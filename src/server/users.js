@@ -72,6 +72,7 @@ users.get('/login', mid.loggedOut, (req, res) => {
 });
 
 
+
 // route to login page - POST
 users.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -110,19 +111,27 @@ users.post('/login', (req, res) => {
 
 // route to profile page - GET user info and user's posts
 users.get('/profile', mid.requiresLogin, (req, res) => {
-  userQueries.getUserInfoAndPosts(req.session.userID)
-    .then((info) => {
-      res.render('profile', {
-        title: 'Profile Page',
-        id: info.user.user_id,
-        imgNum: info.user.img_num,
-        name: info.user.name,
-        city: info.user.current_city,
-        joined: moment(info.user.date_joined).format('MMM DD, YYYY'),
-        posts: info.posts,
-        moment
-      });
+  if(!req.session.userName) {
+    res.render('login', {
+      title: 'Log In',
+      error: '',
+      name: req.session.userName,
     });
+  } else {
+    userQueries.getUserInfoAndPosts(req.session.userID)
+      .then((info) => {
+        res.render('profile', {
+          title: 'Profile Page',
+          id: info.user.user_id,
+          imgNum: info.user.img_num,
+          name: info.user.name,
+          city: info.user.current_city,
+          joined: moment(info.user.date_joined).format('MMM DD, YYYY'),
+          posts: info.posts,
+          moment
+        });
+      });
+  }
 });
 
 
