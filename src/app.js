@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // use sessions for tracking logins with cookie-session
 app.use(session({
   name: 'session',
-  keys: ['supersecretkey'],
+  keys: [process.env.SESSION_KEY],
 }));
 
 //make userID and userName available in templates
