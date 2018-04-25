@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   res.locals.userID = req.session.userID;
   res.locals.userName = req.session.userName;
   next();
-})
+});
 
 // serve static files from /public
 app.use(express.static('public'));

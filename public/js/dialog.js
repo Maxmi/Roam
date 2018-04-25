@@ -1,6 +1,5 @@
-// delete confirmation box
+// Function to create custom confirmation box to display when user wants to delete a post
 function CustomConfirm() {
-
   const close = () => {
     document.getElementById('dialogbox').style.display = 'none';
     document.getElementById('dialogoverlay').style.display = 'none';
@@ -13,7 +12,6 @@ function CustomConfirm() {
     dialogbox.style.left = '400px';
     dialogbox.style.top = '100px';
     dialogbox.style.display = 'block';
-
 
     document.getElementById('dialogboxbody').innerHTML = dialog;
 
@@ -34,7 +32,6 @@ function CustomConfirm() {
     fn();
     close();
   };
-
 }
 
 //close dialogbox by clicking on X

@@ -23,7 +23,7 @@ const getCityById = cityID => {
     FROM cities
     WHERE city_id=$1
   `;
-  return db.one(query, [cityID]);
+  return db.oneOrNone(query, [cityID]);
 };
 
 /**

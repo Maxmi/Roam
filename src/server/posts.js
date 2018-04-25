@@ -37,7 +37,7 @@ posts.put('/:postID', (req, res) => {
   const {content} = req.body;
   return postQueries.editPost(postID, content)
     .then((post) => {
-      res.json(post)
+      res.json(post);
     })
     .catch(console.error);
 });

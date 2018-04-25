@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const cityWrapper = document.getElementsByName('city')[0];
 
   editBtn.addEventListener('click', (event) => {
-    // const editBtn = event.target;
     event.preventDefault();
     if(editBtn.textContent === 'Edit Profile') {
       //making name and city editable
@@ -73,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
       confirm.render('Are you sure you want to delete this post?', handler);
     }
   });
-
-
 
 
   //update user's post
