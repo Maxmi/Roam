@@ -69,7 +69,7 @@ const getUserInfoAndPosts = userID => {
  * @param  { Number } user_id ID of a user
  * @param  { String } name    String entered into name field of profile form
  * @param  { String } city    String entered into city field of profile form
- * @return { Promise }        Promise resolving into an object representing an updated user info 
+ * @return { Promise }        Promise resolving into an object representing an updated user info
  */
 
 const updateUser = (user_id, name, city) => {
