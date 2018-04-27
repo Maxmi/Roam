@@ -9,7 +9,7 @@ const {
   getRandomInt,
   encryptPassword,
   comparePassword
-} = require('./helpers');
+} = require('../utils/helpers');
 
 
 // route to signup page - GET
