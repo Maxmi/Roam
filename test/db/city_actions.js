@@ -7,14 +7,18 @@ const {
   getCityById,
   getCityInfoAndPosts
 } = require('../../src/models/cities');
+const { resetDb } = require('./helpers');
 
-describe('city actions', () => {
+describe.only('city actions', () => {
+  beforeEach(() => {
+    return resetDb();
+  });
   describe('getCities', () => {
     it('should return list of cities from the db', () => {
       return getCities()
         .then(cities => {
           expect(cities).to.be.a('array');
-          expect(cities.length).to.equal(3);
+          expect(cities.length).to.equal(2);
           cities.every(city => {
             expect(city).to.be.a('object');
             expect(city).to.have.property('city_id');
@@ -31,7 +35,7 @@ describe('city actions', () => {
           .then(city => {
             expect(city).to.be.a('object');
             expect(city).to.have.property('city_name');
-            expect(city.city_name).to.equal('Tokyo');
+            expect(city.city_name).to.equal('TestCity');
           });
       });
     });
@@ -48,7 +52,7 @@ describe('city actions', () => {
   describe('getCityInfoAndPosts', () => {
     context('when city exists but there are no posts for it', () => {
       it('should return only city info without posts', () => {
-        return getCityInfoAndPosts('tokyo')
+        return getCityInfoAndPosts('noPostCity')
           .then(data => {
             expect(data).to.be.a('object');
             expect(data).to.have.property('city');
@@ -63,7 +67,7 @@ describe('city actions', () => {
     });
     context('when city doesn\'t exist and there are no posts for it', () => {
       it('should return object with no data in it', () => {
-        return getCityInfoAndPosts('testcity')
+        return getCityInfoAndPosts('nonExistingCity')
           .then(data => {
             expect(data).to.be.a('object');
             expect(data).to.have.property('city');
@@ -73,29 +77,23 @@ describe('city actions', () => {
           });
       });
     });
-    // context('when city exists and there are posts for it', () => {
-    //   beforeEach('reset db and add posts', () => {
-    //     return resetAndSeedPosts()
-    //       .then(result => {
-    //         // TODO: create the resetAndSeedPosts function
-    //       })
-    //   });
-    //   it('should return city info and posts', () => {
-    //     return getCityInfoAndPosts('tokyo')
-    //       .then(data => {
-    //         expect(data).to.be.a('object');
-    //         expect(data).to.have.property('city');
-    //         expect(data.city).to.be.a('object');
-    //         expect(data.city).to.have.property('city_name');
-    //         expect(data.city).to.have.property('city_info');
-    //         expect(data).to.have.property('posts');
-    //         expect(data.posts).to.be.a('array');
-    //         expect(data.posts.length).to.be.above(0);
-    //       });
-    //   });
-    // });
-
-
+    context('when city exists and there are posts for it', () => {
+      it('should return city info and posts', () => {
+        return getCityInfoAndPosts('TestCity')
+          .then(data => {
+            expect(data).to.be.a('object');
+            expect(data).to.have.property('city');
+            expect(data.city).to.be.a('object');
+            expect(data.city).to.have.property('city_name');
+            expect(data.city.city_name).to.equal('TestCity');
+            expect(data).to.have.property('posts');
+            expect(data.posts).to.be.a('array');
+            expect(data.posts.length).to.be.above(0);
+            expect(data.posts[0]).to.have.property('content');
+            expect(data.posts[0].content).to.equal('this city is great!');
+          });
+      });
+    });
   });
 
 

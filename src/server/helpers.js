@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 /**
  * This function is used when a user is being added into db, to get one of images in the images/userPics folder and assign it as user's image
@@ -16,17 +15,18 @@ function getRandomInt(min, max) {
 /**
  * Function to encrypt user password
  * @param  { String } rawPassword String provided by a user at registration
+ * @param  { Number } 10          Number representing saltRounds for hashing
  * @return { Promise }            Promise resolving to a string representing a hashed password
  */
-const encryptPassword = rawPassword => {
-  return bcrypt.hash(rawPassword, saltRounds);
+const encryptPassword = (rawPassword)  => {
+  return bcrypt.hash(rawPassword, 10);
 };
 
 
 /**
  * Function to compare password provided by a user and it's hash in the db
  * @param  { String } rawPassword    String provided by user at log in
- * @param  { String } hashedPassword String retrieved from db 
+ * @param  { String } hashedPassword String retrieved from db
  * @return { Promise }               Promise resolving into a boolean representing the result of comparison
  */
 const comparePassword = (rawPassword, hashedPassword) => {
