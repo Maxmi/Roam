@@ -9,7 +9,7 @@ const {
 } = require('../../src/models/cities');
 const { resetDb } = require('./helpers');
 
-describe.only('city actions', () => {
+describe('city actions', () => {
   beforeEach(() => {
     return resetDb();
   });
