@@ -3,7 +3,7 @@ const db = require('../../src/models/db');
 const path = require('path');
 const {
   encryptPassword,
-} = require('../../src/server/helpers');
+} = require('../../src/utils/helpers');
 
 
 /** globals for creating stuff **/
