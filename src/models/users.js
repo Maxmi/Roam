@@ -29,7 +29,7 @@ const getUser = (email) => {
     FROM users
     WHERE email=$1
   `;
-  return db.one(query,[email]);
+  return db.oneOrNone(query,[email]);
 };
 
 

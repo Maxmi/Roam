@@ -15,7 +15,7 @@ const getCities = () => {
 /**
  * Function to get city name by it's ID
  * @param  { Number } cityID - ID of a city to retrieve
- * @return { Promise }       - Promise resolving into object representing a city
+ * @return { Promise }       - Promise resolving into object representing a city or resolving to null if city is not in db
  */
 const getCityById = cityID => {
   const query = `

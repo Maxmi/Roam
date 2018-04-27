@@ -1,13 +1,15 @@
 const express = require('express');
 const users = express.Router();
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 const moment = require('moment');
 
 const userQueries = require('../models/users');
 
 const mid = require('./middleware');
-const {getRandomInt} = require('../helpers');
+const {
+  getRandomInt,
+  encryptPassword,
+  comparePassword
+} = require('./helpers');
 
 
 // route to signup page - GET
@@ -38,22 +40,22 @@ users.post('/signup', (req, res) => {
       error: 'All fields are required to sign up',
     });
   } else {
-    // hash the password and add user info to db
-    bcrypt.hash(password, saltRounds, (err, hash) => {
-      const imgNum = getRandomInt(1, 5);
-      userQueries.addUser(name, email, hash, city, imgNum)
-        .then((user) => {
-        // start tracking the user
-          req.session.userID = user.user_id;
-          req.session.userName = user.name;
-          res.redirect('/');
-        }).catch((err) => {
-          res.render('signup', {
-            title: 'Sign Up',
-            error: 'Could not add user to database',
+    const imgNum = getRandomInt(1, 5);
+    return encryptPassword(password)
+      .then(hash => {
+        return userQueries.addUser(name, email, hash, city, imgNum)
+          .then(user => {
+            req.session.userID = user.user_id;
+            req.session.userName = user.name;
+            res.redirect('/');
           });
+      })
+      .catch(err => {
+        res.render('signup', {
+          title: 'Sign Up',
+          error: 'Could not add user to database',
         });
-    });
+      });
   }
 });
 
@@ -82,19 +84,19 @@ users.post('/login', (req, res) => {
       error: 'Provide both email and password.'
     });
   } else {
-    userQueries.getUser(email)
+    return userQueries.getUser(email)
       .then(user => {
-        bcrypt.compare(password, user.password)
+        return comparePassword(password, user.password)
           .then(result => {
             if(!result) {
               res.render('login', {
                 title: 'Log In',
-                error: 'Wrong email or password.'
+                error: 'Wrong email or password'
               });
             } else {
               req.session.userID = user.user_id;
               req.session.userName = user.name;
-              return res.redirect('/');
+              res.redirect('/');
             }
           });
       })
