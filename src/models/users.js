@@ -1,21 +1,25 @@
 const db = require('./db');
+const { encryptPassword } = require('../utils/helpers');
 
 /**
  * Function to sign up a user
- * @param { String } name   name
- * @param { String } email  email
+ * @param { String } name     name
+ * @param { String } email    email
  * @param { String } password password
  * @param { String } city     home city
  * @param { Number } img_num  Random number between 1 and 5 which will randomly select an image from images/userPics folder to assign as a user image
  * @return { Promise } Promise resolving into an object representing the row added to the users table
  */
 const addUser = (name, email, password, city, img_num) => {
-  const query = `
-    INSERT INTO users (name, email, password, current_city, img_num)
-    VALUES ($1, $2, $3, $4, $5)
-    RETURNING *
-  `;
-  return db.one(query,[name, email, password, city, img_num]);
+  return encryptPassword(password)
+    .then(hash => {
+      const query = `
+        INSERT INTO users (name, email, password, current_city, img_num)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING *
+      `;
+      return db.one(query,[name, email, hash, city, img_num]);
+    });
 };
 
 /**
@@ -25,7 +29,7 @@ const addUser = (name, email, password, city, img_num) => {
  */
 const getUser = (email) => {
   const query = `
-    SELECT user_id, name, password
+    SELECT user_id, name, email, password
     FROM users
     WHERE email=$1
   `;

@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
-const index = require('./server/index');
-const users = require('./server/users');
-const posts = require('./server/posts');
+const index = require('./routes/index');
+const users = require('./routes/users');
+const posts = require('./routes/posts');
 
 const port = process.env.PORT || 3000;
 const app = express();
