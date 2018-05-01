@@ -1,9 +1,7 @@
 const express = require('express');
 const users = express.Router();
 const moment = require('moment');
-
 const userQueries = require('../models/users');
-
 const mid = require('./middleware');
 const {
   getRandomInt,

@@ -9,9 +9,7 @@ const cityRoutes = require('./cities');
 //route to homepage
 index.get('/', (req, res) => {
   res.render('index', {
-    title: 'Home',
-    currentUser: req.session.userID,
-    currentUserName: req.session.userName
+    title: 'Home'
   });
 });
 

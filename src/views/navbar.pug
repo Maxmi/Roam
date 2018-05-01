@@ -4,7 +4,7 @@ nav.navbar
       i.material-icons home
     
   div.right
-    if !currentUser && title === 'Home' || title === 'Sign Up' || title === 'Log In'
+    if !currentUserName 
       a.link(href='/users/signup') Sign Up
       a.link(href='/users/login') Log In
 

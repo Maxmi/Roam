@@ -20,10 +20,10 @@ app.use(session({
   keys: [process.env.SESSION_KEY],
 }));
 
-//make userID and userName available in templates
+// make current userID and userName available in templates
 app.use((req, res, next) => {
-  res.locals.userID = req.session.userID;
-  res.locals.userName = req.session.userName;
+  res.locals.currentUserID = req.session.userID;
+  res.locals.currentUserName = req.session.userName;
   next();
 });
 

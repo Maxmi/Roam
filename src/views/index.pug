@@ -1,7 +1,7 @@
 extends layout
 block content
   
-  if currentUser
+  if currentUserName
     div.poem
       h2.center Welcome to Roam, #{currentUserName}!
   
@@ -31,11 +31,7 @@ block content
   else 
     div.indexwrapper
       div.index
-
-      //- div.links
-      //-   a.link(href='users/signup') Sign Up
-      //-   a.link(href='users/login') Log In
-            
+  
       div.poem
         pre
           span To move, to breathe, to fly, to float, 
@@ -44,7 +40,7 @@ block content
           br
           span To roam the roads of lands remote,
           br
-          span To travel is to live.
+          span To travel is to live!
           
           p.cite
             cite Hans Christian Andersen 
