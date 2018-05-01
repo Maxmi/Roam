@@ -1,6 +1,4 @@
 require('dotenv').config({path: __dirname + '/../../.env'});
-const db = require('../../src/models/db');
-const path = require('path');
 const { expect } = require('chai');
 const {
   getCities,
@@ -26,7 +24,7 @@ describe('city actions', () => {
           });
         });
     });
-  }); //getCities
+  });
 
   describe('getCityById', () => {
     context('when city exists in the db', () => {
@@ -47,7 +45,7 @@ describe('city actions', () => {
           });
       });
     });
-  });//getCityById
+  });
 
   describe('getCityInfoAndPosts', () => {
     context('when city exists but there are no posts for it', () => {
@@ -96,6 +94,4 @@ describe('city actions', () => {
     });
   });
 
-
-
-}); //most outer describe
+});

@@ -1,6 +1,5 @@
 require('dotenv').config({path: __dirname + '/../../.env'});
 const db = require('../../src/models/db');
-const path = require('path');
 const { expect } = require('chai');
 const {
   savePost,
@@ -37,7 +36,7 @@ describe('post actions', () => {
             });
         });
     });
-  }); //savePost
+  });
 
   describe('delete post', () => {
     beforeEach(() => {
@@ -67,6 +66,4 @@ describe('post actions', () => {
     });
   });
 
-
-
-});//most outer describe
+});

@@ -1,6 +1,5 @@
 require('dotenv').config({path: __dirname + '/../../.env'});
 const db = require('../../src/models/db');
-const path = require('path');
 const {
   encryptPassword,
 } = require('../../src/utils/helpers');

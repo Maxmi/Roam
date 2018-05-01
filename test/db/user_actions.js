@@ -1,6 +1,4 @@
 require('dotenv').config({path: __dirname + '/../../.env'});
-const db = require('../../src/models/db');
-const path = require('path');
 const { expect } = require('chai');
 
 const {
@@ -39,7 +37,7 @@ const POST_PROPS = [
   'city_name'
 ];
 
-describe.only('user actions', () => {
+describe('user actions', () => {
   describe('add a user', () => {
     let newUser;
     const name = 'Ro Roamer';
