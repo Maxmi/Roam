@@ -1,5 +1,5 @@
 const db = require('./db');
-const { encryptPassword } = require('../utils/helpers');
+const { encryptPassword, comparePassword } = require('../utils/helpers');
 
 /**
  * Function to sign up a user
@@ -23,7 +23,7 @@ const addUser = (name, email, password, city, img_num) => {
 };
 
 /**
- * Function to log in a user
+ * Function to get user data by email
  * @param  { String } email email
  * @return { Promise }      Promise resolving into an object representing a user row or resolving to null if user is not in db
  */
@@ -36,6 +36,26 @@ const getUser = (email) => {
   return db.oneOrNone(query,[email]);
 };
 
+/**
+ * Function to check if email/password combo exists in db
+ * @param  { String } email     - Email of a user
+ * @param  { String } password  - Password of a user
+ * @return { Promise }          - Promise resolving to object representing a user if email/password are correct
+ * or null if user doesn't exist in db
+ * or if email/password combo is incorrect
+ */
+const authenticateUser = (email, password) => {
+  return getUser(email)
+    .then(user => {
+      if(user) {
+        return comparePassword(password, user.password)
+          .then(result => {
+            return result ? user : null;
+          });
+      }
+      return null;
+    });
+};
 
 /**
  * Function to get data on user and his posts (user profile page)
@@ -91,6 +111,7 @@ const updateUser = (user_id, name, city) => {
 module.exports = {
   addUser,
   getUser,
+  authenticateUser,
   getUserInfoAndPosts,
   updateUser
 };

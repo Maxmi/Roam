@@ -6,12 +6,12 @@ const { expect } = require('chai');
 const {
   addUser,
   getUser,
+  authenticateUser,
   getUserInfoAndPosts,
   updateUser
 } = require('../../src/models/users');
 
 const {
-  // encryptPassword,
   comparePassword
 } = require('../../src/utils/helpers');
 
@@ -75,7 +75,7 @@ describe.only('user actions', () => {
     });
   });
 
-  describe('get a user from db', () => {
+  describe('get user from db by email', () => {
     let userRow;
     context('when user exists', () => {
       before(() => {
@@ -157,5 +157,47 @@ describe.only('user actions', () => {
       });
     });
   });
+
+  describe('authenticate user', () => {
+    context('when user exists and provided email/password are correct', () => {
+      let returnedUser;
+      before(() => {
+        return resetDb()
+          .then(() => authenticateUser('test@test.com', 'test'))
+          .then(user => returnedUser = user);
+      });
+      BASIC_USER_PROPS.forEach(prop => {
+        it(`returns an object with the ${prop} property`, () => {
+          expect(returnedUser).to.have.property(prop);
+        });
+      });
+    });
+
+    context('when user exists but provided password is not correct', () => {
+      before(() => {
+        return resetDb();
+      });
+      it('should return null', () => {
+        return authenticateUser('test@test.com', 'wrong')
+          .then(result => {
+            expect(result).to.be.null;
+          });
+      });
+    });
+
+    context('when user doesn\'t exist', () => {
+      before(() => {
+        return resetDb();
+      });
+      it('should return null', () => {
+        return authenticateUser('fake@test.com', 'fake')
+          .then(result => {
+            expect(result).to.be.null;
+          });
+      });
+    });
+  });
+
+
 
 });
