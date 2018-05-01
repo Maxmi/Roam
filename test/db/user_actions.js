@@ -198,6 +198,18 @@ describe.only('user actions', () => {
     });
   });
 
-
+  describe('update user', () => {
+    before(() => {
+      return resetDb();
+    });
+    it('should update user row in db', () => {
+      return updateUser(1, 'Updated Name', 'Updated City')
+        .then(updatedUser => {
+          expect(updatedUser).to.be.a('object');
+          expect(updatedUser.name).to.equal('Updated Name');
+          expect(updatedUser.current_city).to.equal('Updated City');
+        });
+    });
+  });
 
 });
