@@ -2,9 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('cookie-session');
-const index = require('./routes/index');
-const users = require('./routes/users');
-const posts = require('./routes/posts');
+const routes = require('./routes/index');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -35,9 +33,7 @@ app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
 
 // routes
-app.use('/', index);
-app.use('/users', users);
-app.use('/posts', posts);
+app.use(routes);
 
 // catch 404
 app.use((req, res, next) => {
@@ -62,4 +58,4 @@ app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
 
-module.exports = { app };
+module.exports = app;
