@@ -6,7 +6,7 @@ const app = require('../../src/app');
 
 chai.use(chaiHttp);
 
-describe.only('posts routes', () => {
+describe('posts routes', () => {
   beforeEach(() => {
     return resetDb();
   });
