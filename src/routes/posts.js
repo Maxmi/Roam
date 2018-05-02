@@ -48,7 +48,7 @@ posts.delete('/:postID', (req, res) => {
   const postID = parseInt(req.params.postID);
   return postQueries.deletePost(postID)
     .then(() => {
-      res.render('profile');
+      res.json();
     })
     .catch(console.error);
 });
