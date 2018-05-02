@@ -16,6 +16,7 @@ describe('/GET /cities/:city', () => {
       .then(res => {
         expect(res).to.be.html;
         expect(res).to.have.status(200);
+        expect(res.text).to.include('<title>Roam | TestCity</title>');
       });
   });
 });

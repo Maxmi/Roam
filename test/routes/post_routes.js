@@ -17,6 +17,7 @@ describe('posts routes', () => {
         .then(res => {
           expect(res).to.be.html;
           expect(res).to.have.status(200);
+          expect(res.text).to.include('<title>Roam | Add Review</title>');
         });
     });
   });
@@ -33,6 +34,8 @@ describe('posts routes', () => {
         .then(res => {
           expect(res).to.be.html;
           expect(res).to.have.status(200);
+          expect(res.text).to.include('<title>Roam | TestCity</title>');
+          expect(res.redirects[0]).to.include('/cities/testcity');
         });
     });
   });
@@ -58,6 +61,7 @@ describe('posts routes', () => {
         .then(res => {
           expect(res).to.be.json;
           expect(res).to.have.status(200);
+          expect(res.body).to.equal('');
         });
     });
   });
