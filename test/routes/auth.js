@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { expect } = require('chai');
-const { resetDb, clearDb } = require('../db/helpers');
+const { resetDb } = require('../db/helpers');
 const app = require('../../src/app');
 
 chai.use(chaiHttp);
 
+describe('user routes', () => {
 
-describe.only('user routes', () => {
   describe('/POST signup', () => {
     before(() => {
       return resetDb();
@@ -26,7 +26,7 @@ describe.only('user routes', () => {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Home</title>');
-          expect(res.redirects[0]).to.include('/')
+          expect(res).to.redirect;
         });
     });
     it('should display error message if any field was not filled', () => {
@@ -43,10 +43,10 @@ describe.only('user routes', () => {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Sign Up</title>');
-          expect(res.text).to.include('<p class="error">All fields are required to sign up</p>')
+          expect(res.text).to.include('<p class="error">All fields are required to sign up</p>');
         });
     });
-  }); //describe
+  });
 
   describe('/POST login', () => {
     before(() => {
@@ -64,7 +64,7 @@ describe.only('user routes', () => {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Home</title>');
-          expect(res.redirects[0]).to.include('/');
+          expect(res).to.redirect;
         });
     });
     it('should display error message on the login page if user entered wrong password', () => {
@@ -79,7 +79,7 @@ describe.only('user routes', () => {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Log In</title>');
-          expect(res.text).to.include('<p class="error">Wrong email or password</p>')
+          expect(res.text).to.include('<p class="error">Wrong email or password</p>');
         });
     });
     it('should display error message on the login page if user is not found in db ', () => {
@@ -94,11 +94,9 @@ describe.only('user routes', () => {
           expect(res).to.have.status(200);
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Log In</title>');
-          expect(res.text).to.include('<p class="error">User not found.</p>')
+          expect(res.text).to.include('<p class="error">User not found.</p>');
         });
     });
-  }); //describe post login
-
-
+  });
 
 }); //most outer describe
