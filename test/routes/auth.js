@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('user routes', () => {
 
   describe('/POST signup', () => {
-    before(() => {
+    beforeEach(() => {
       return resetDb();
     });
     it('should let new user to signup if all data provided and redirect to /', () => {
@@ -49,7 +49,7 @@ describe('user routes', () => {
   });
 
   describe('/POST login', () => {
-    before(() => {
+    beforeEach(() => {
       return resetDb();
     });
     it('should let registered user with correct credentials to log in and redirect to /', () => {
@@ -67,7 +67,7 @@ describe('user routes', () => {
           expect(res).to.redirect;
         });
     });
-    it('should display error message on the login page if user entered wrong password', () => {
+    it('should display error message if user entered wrong password', () => {
       return chai.request(app)
         .post('/users/login')
         .type('form')
@@ -80,21 +80,6 @@ describe('user routes', () => {
           expect(res).to.be.html;
           expect(res.text).to.include('<title>Roam | Log In</title>');
           expect(res.text).to.include('<p class="error">Wrong email or password</p>');
-        });
-    });
-    it('should display error message on the login page if user is not found in db ', () => {
-      return chai.request(app)
-        .post('/users/login')
-        .type('form')
-        .send({
-          'email': 'fake@test.com',
-          'password': 'wrong'
-        })
-        .then(res => {
-          expect(res).to.have.status(200);
-          expect(res).to.be.html;
-          expect(res.text).to.include('<title>Roam | Log In</title>');
-          expect(res.text).to.include('<p class="error">User not found.</p>');
         });
     });
   });
