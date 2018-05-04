@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
   name: 'session',
   keys: [process.env.SESSION_KEY],
+  // maxAge: 24 * 60 * 60 * 1000
 }));
 
 // make current userID and userName available in templates

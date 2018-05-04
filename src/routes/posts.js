@@ -7,7 +7,7 @@ const cityQueries = require('../models/cities');
 posts.get('/newPost', (req, res) => {
   cityQueries.getCities()
     .then(cities => {
-      res.render('newPost', {
+      return res.render('newPost', {
         title: 'Add Review',
         cities
       });
@@ -25,7 +25,7 @@ posts.post('/newPost', (req, res) => {
       return cityQueries.getCityById(cityID);
     })
     .then(data => {
-      res.redirect(`/cities/${data.city_name.toLowerCase()}`);
+      return res.redirect(`/cities/${data.city_name.toLowerCase()}`);
     })
     .catch(console.error);
 });

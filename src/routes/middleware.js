@@ -1,3 +1,6 @@
+/**
+ * Middleware functions to be used in routes 
+ */
 const requiresLogin =  (req, res, next) => {
   if(req.session && req.session.userID) {
     return next();

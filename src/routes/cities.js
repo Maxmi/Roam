@@ -9,7 +9,7 @@ cities.get('/:city', (req, res) => {
   const {city} = req.params;
   cityQueries.getCityInfoAndPosts(city)
     .then(info => {
-      res.render('cityInfo', {
+      return res.render('cityInfo', {
         title: info.city.city_name,
         name: info.city.city_name,
         info: info.city.city_info,

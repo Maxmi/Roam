@@ -8,7 +8,7 @@ const cityRoutes = require('./cities');
 
 //route to homepage
 routes.get('/', (req, res) => {
-  res.render('index', {
+  return res.render('index', {
     title: 'Home'
   });
 });
